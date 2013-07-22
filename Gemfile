@@ -36,6 +36,9 @@ group :test, :development do
   gem 'rspec-rails'
 end
 
+# Use devise for user authentication etc...
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
