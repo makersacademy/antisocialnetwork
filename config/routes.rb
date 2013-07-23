@@ -1,9 +1,9 @@
 Antisocialnetwork::Application.routes.draw do
   get "sessions/new", :as => :signin
-  delete "sessions/destroy"
+  # delete "sessions/destroy"
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
-  resources :users
+  resources :users, :only => [:index, :show, :edit, :update, :destroy]
   root to: "sessions#new"
 
   # The priority is based upon order of creation: first created -> highest priority.

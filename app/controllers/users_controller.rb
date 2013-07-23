@@ -2,12 +2,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def new
-  end
-
-  def create
-  end
-
   def show
   end
 
@@ -15,8 +9,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    redirect_to 'show'
   end
 
   def destroy
+    redirect_to 'index'
   end
 end
