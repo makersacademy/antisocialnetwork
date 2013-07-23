@@ -1,12 +1,16 @@
 Antisocialnetwork::Application.routes.draw do
-  get "subscrition/create"
+  get "sessions/new", :as => :signin
+  delete "sessions/destroy"
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
+  resources :users
+  root to: "sessions#new"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
-  # Devise requires the definition of a root
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
