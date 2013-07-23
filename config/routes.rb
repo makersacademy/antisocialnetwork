@@ -1,4 +1,7 @@
 Antisocialnetwork::Application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
 resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
