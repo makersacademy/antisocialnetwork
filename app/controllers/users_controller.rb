@@ -4,12 +4,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def new
-  end
-
-  def create
-  end
-
   def show
   end
 
@@ -17,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def update
+  def updatebundle 
     user = User.find(params[:id])
     customer = Stripe::Customer.create(
                   :description => "New customer",
@@ -34,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    redirect_to 'index'
   end
   
 end

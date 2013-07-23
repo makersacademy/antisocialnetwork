@@ -20,23 +20,16 @@ describe UsersController do
 
   describe "GET 'create'" do
     it "returns http success" do
-      pending
-      get 'create'
+      response.should render_template 'index'
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "returns http success" do
-      pending
-      get 'show'
+      get 'show', :id => 1
+      response.should render_template 'show'
       response.should be_success
-    end
-  end
-
-  describe "GET 'edit'" do
-    it "returns http success" do
-      pending
     end
   end
 
@@ -50,14 +43,18 @@ describe UsersController do
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "PUT 'update'" do
     it "returns http success" do
-      pending
-      get 'destroy'
-      response.should be_success
+      put 'update', :id => 1
+      response.should redirect_to 'show'
     end
   end
 
-
+  describe "DELETE 'destroy'" do
+    it "returns http success" do
+      delete 'destroy', :id => 1
+      response.should redirect_to 'index'
+    end
+  end
 
 end

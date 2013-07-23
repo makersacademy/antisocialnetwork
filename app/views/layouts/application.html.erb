@@ -8,17 +8,26 @@
   <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				
-			</div>
-		</div>
-	</div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <% if current_user %>
+            <a class="brand" href="#">Anti Social Network</a>
+            Welcome <%= current_user.name %>!
+            <div class="nav-right">
+              <%= link_to "Sign Out", signout_path %>
+            </div>
+          <% else %>
+            <a class="brand" href="#">Anti Social Network</a>
+            <div class="brand" id="nav-right">
+              <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 	<%= yield %>
 
 </body>
