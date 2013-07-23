@@ -37,6 +37,7 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'

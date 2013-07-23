@@ -15,7 +15,7 @@ describe SessionsController do
       context "for the first time" do
         it "creates the user" do
           request.stub(:env).and_return(
-            {"omniauth.auth" => {"provider" => "facebook", "uid" => "590905141"}}
+            {"omniauth.auth" => {"provider" => "facebook", "uid" => "593405141"}}
           )
           User.should_receive(:find_by_provider_and_uid).and_return(nil)
           User.should_receive(:create_with_omniauth).and_return(User.new)
@@ -27,7 +27,7 @@ describe SessionsController do
       context "having already signed in before" do
         it "retrieves the existing user" do
           request.stub(:env).and_return(
-            {"omniauth.auth" => {"provider" => "facebook", "uid" => "590905141"}}
+            {"omniauth.auth" => {"provider" => "facebook", "uid" => "590903441"}}
           )
           User.should_receive(:find_by_provider_and_uid).and_return(User.new) # this would be an existing user
           get 'create', :provider => 'facebook'
