@@ -9,16 +9,11 @@ The application assumes facebook developer credentials are stored in the followi
   * `ASN_FACEBOOK_ID` - containing the facebook "app code"
   * `ASN_FACEBOOK_SECRET` - containing the facebook "app secret code"
 
-
 Tests (Specs) can be run with the `rspec` command or `rake spec` (and its derivatives)
 
 
 
 * Configuration
-
-* Database creation
-
-* Database initialization
 
 * Services (job queues, cache servers, search engines, etc.)
 
