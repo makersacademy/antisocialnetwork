@@ -1,14 +1,13 @@
-<<%= form_for :
-
-<%= f.hidden_field :stripe_card_token %>
-<%= f.label :email %>
-<%= f.text_field :email %>
-
-<%= label_tag :card_number, "Credit Card Number" %>
-<%= text_field_tag :card_number, nil, name: nil %>
-<%= label_tag :card_code, "Security Code on Card (CVV)" %>
-<%= text_field_tag :card_code, nil, name: nil %>
-<%= label_tag :card_month, "Card Expiration" %>
-<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+<%= form_tag({controller: "users", action: "update"}, :id => "payment_form") do %>
+  <%= hidden_field_tag :user_id, :value => params[:id] %>
+  <%= hidden_field_tag :stripe_card_token %>
+  <div id="stripe_error"></div>
+  <%= label_tag :card_number, "Credit Card Number" %>
+  <%= text_field_tag :card_number, nil, name: nil %>
+  <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+  <%= text_field_tag :card_code, nil, name: nil %>
+  <%= label_tag :card_month, "Card Expiration" %>
+  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  <%= submit_tag "Authorize Payment" %>
 <% end %>
