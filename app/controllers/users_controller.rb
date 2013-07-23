@@ -23,7 +23,13 @@ class UsersController < ApplicationController
                   :card => params[:stripe_card_token] 
                )
     user.customer_id = params[:stripe_card_token]
-    user.save
+    if user.save
+      flash[:notice] = "Thank-you!"
+      redirect_to user_path(user)
+    else
+      flash[:notice] = "Something went wrong! Please try again!"
+      redirect_to user_path(user)
+    end  
   end
 
   def destroy

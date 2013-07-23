@@ -42,9 +42,6 @@ end
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-# Use devise for user authentication etc...
-gem 'devise'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
