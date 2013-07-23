@@ -1,5 +1,4 @@
-<%= form_tag({controller: "users", action: "update"}, :id => "payment_form", :method => :put) do %>
-  <%= hidden_field_tag :user_id, params[:id] %>
+<%= form_tag(user_path(@user), :method => :put) do %>  
   <%= hidden_field_tag :stripe_card_token %>
   <div id="stripe_error"></div>
   <%= label_tag :card_number, "Credit Card Number" %>

@@ -14,15 +14,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
-    user = User.find(params[:user_id])
+    user = User.find(params[:id])
     customer = Stripe::Customer.create(
                   :description => "New customer",
                   :card => params[:stripe_card_token] 
                )
-    user.customer_id = params[:stripe_card_token]
+    user.stripe_customer_id = customer.id    
     if user.save
       flash[:notice] = "Thank-you!"
       redirect_to user_path(user)
@@ -34,4 +35,5 @@ class UsersController < ApplicationController
 
   def destroy
   end
+  
 end
