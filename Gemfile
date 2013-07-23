@@ -39,6 +39,8 @@ group :test, :development do
   gem 'rspec-rails'
 end
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Use devise for user authentication etc...
 gem 'devise'
 
