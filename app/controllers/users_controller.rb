@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def updatebundle 
+  def update
     user = User.find(params[:id])
     customer = Stripe::Customer.create(
                   :description => "New customer",

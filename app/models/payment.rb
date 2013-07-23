@@ -12,10 +12,10 @@ class Payment < ActiveRecord::Base
     Payment.create(:user_id => user.id, :bill_amount => amount)
   end
 
-  # def payment_from_all_user
-  #   users = User.all
-  #   users.each do |user|
-  #     make_payment(calculate_amount(x), user)
-  #   end 
-  # end   
+  def gpayment_from_all_user
+    users = User.all
+    users.each do |user|
+      make_payment(calculate_amount(x), user)
+    end 
+  end   
 end
