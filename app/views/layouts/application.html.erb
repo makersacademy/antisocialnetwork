@@ -9,11 +9,13 @@
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
+			<div class="container brand">
         <% if current_user %>
+          <%= link_to "Anti Social Network"%>
           Welcome <%= current_user.name %>!
           <%= link_to "Sign Out", signout_path %>
         <% else %>
+          <%= link_to "Anti Social Network"%>
           <%= link_to "Sign in with Facebook", "/auth/facebook" %>
         <% end %>
 			</div>
