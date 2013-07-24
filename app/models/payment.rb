@@ -13,7 +13,7 @@ class Payment < ActiveRecord::Base
     Payment.create(:user_id => user.id, :bill_amount => amount)
   end
 
-  def self.payment_from_all_user
+  def self.charge_all_user
     users = User.all
     users.each do |user|
       self.make_payment(self.calculate_amount, user)
