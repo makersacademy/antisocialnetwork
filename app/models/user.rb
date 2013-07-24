@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
       user.fb_access_token = auth["credentials"]["token"]
-      user.fb_access_expires_at = Time.at(auth["credentials"]["expires_at"
+      user.fb_access_expires_at = Time.at(auth["credentials"]["expires_at"])
     end
 	end
 
-<<<<<<< HEAD
+
   def facebook
     @facebook ||= Koala::Facebook::API.new(fb_access_token)
     block_given? ? yield(@facebook) : @facebook
@@ -26,6 +26,4 @@ class User < ActiveRecord::Base
   #   facebook { |fb| fb.get_connection("me", "friends").size }
   # end
 
-=======
->>>>>>> master
 end
