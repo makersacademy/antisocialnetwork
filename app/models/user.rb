@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   #   facebook { |fb| fb.get_connection("me", "friends").size }
   # end
 
+  def get_statuses
+    facebook{ |fb| fb.get_connection("me", "statuses") }
+  end
+
 end
