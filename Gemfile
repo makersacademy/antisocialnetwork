@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem "koala", "~> 1.7.0rc1"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
