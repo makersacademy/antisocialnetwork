@@ -19,10 +19,9 @@ describe ActivitiesController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
-      pending
+    it "should?...." do
+      pending "implementation of create not yet clear"
       post 'create'
-      response.should be_success
     end
   end
 

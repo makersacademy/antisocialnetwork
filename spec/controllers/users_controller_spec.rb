@@ -3,15 +3,15 @@ require 'spec_helper'
 describe UsersController do
 
   describe "GET 'index'" do
-    it "returns http success" do
-      pending
+    it "renders a list of users" do
+      pending "requirement to show users is not yet established"
       get 'index'
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
-    it "returns http success" do
+    it "renders the user show page" do
       get 'show', :id => 1
       response.should render_template 'show'
       response.should be_success
@@ -30,9 +30,14 @@ describe UsersController do
   end
 
   describe "DELETE 'destroy'" do
-    it "returns http success" do
+    it "redirects to index" do
       delete 'destroy', :id => 1
       response.should redirect_to 'index'
+    end
+
+    it "deletes the user from the database" do
+      pending "not clear at this point whether users should be deleted or just deactivated"
+      delete 'destroy', :id => 1
     end
   end
 
