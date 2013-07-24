@@ -21,8 +21,8 @@ module Antisocialnetwork
     # config.i18n.default_locale = :de
 
     # disable fixtures
-    config.generators do |g|
-      g.factory_girl false
-    end
+    # config.generators do |g|
+    #   g.factory_girl false
+    # end
   end
 end

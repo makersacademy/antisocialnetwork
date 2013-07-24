@@ -1,7 +1,8 @@
 class Payment < ActiveRecord::Base
   belongs_to :user
 
-  def calculate_amount(activity)
+  def self.calculate_amount(activity=100)
+    activity
   end
 
   def self.make_payment(amount, user)
@@ -12,10 +13,10 @@ class Payment < ActiveRecord::Base
     Payment.create(:user_id => user.id, :bill_amount => amount)
   end
 
-  def gpayment_from_all_user
+  def self.payment_from_all_user
     users = User.all
     users.each do |user|
-      make_payment(calculate_amount(x), user)
+      self.make_payment(self.calculate_amount, user)
     end 
   end   
 end
