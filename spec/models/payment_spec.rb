@@ -13,7 +13,8 @@ describe Payment do
 
   describe "charging all users" do
     it "should only charge user with stripe customer id" do
-      user1 = FactoryGirl.create(:user, name:"Tom", email: "t@gmail.com", 
+      user1 = FactoryGirl.create(:user, name: "Tom", 
+                                        rake email: "t@gmail.com", 
                                         stripe_customer_id: "scid 453443")
       user2 = FactoryGirl.create(:user)
       stub_stripe
