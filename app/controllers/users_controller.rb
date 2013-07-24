@@ -15,15 +15,12 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     customer = Stripe::Customer.create(
                   :description => "New customer",
-                  :card => params[:stripe_card_token] 
-               )
+                  :card => params[:stripe_card_token] )
     user.stripe_customer_id = customer.id    
     if user.save
-      flash[:notice] = "Thank-you!"
-      redirect_to user_path(user)
+      redirect_to user_path(user), :notice => "Your payment has been authorized! Thank-you!"
     else
-      flash[:notice] = "Something went wrong! Please try again!"
-      redirect_to user_path(user)
+      redirect_to user_path(user), :notice => "Something went wrong! Please try again!"
     end  
   end
 
