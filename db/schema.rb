@@ -16,11 +16,18 @@ ActiveRecord::Schema.define(version: 20130724101311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bill_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.string   "customer_id"
+    t.string   "stripe_customer_id"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

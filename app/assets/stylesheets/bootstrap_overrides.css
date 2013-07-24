@@ -1,4 +1,14 @@
-#logo-large{
+@media(min-width: 980px) {
+	body {
+		padding-top: 60px;
+	}	
+}
+
+body {
+	margin-bottom: 30px;
+}
+
+.center-align{
   text-align: center;
 }
 

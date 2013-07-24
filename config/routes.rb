@@ -1,4 +1,5 @@
 Antisocialnetwork::Application.routes.draw do
+
   get "sessions/new", :as => :signin
   # delete "sessions/destroy"
   get "/auth/:provider/callback" => "sessions#create"

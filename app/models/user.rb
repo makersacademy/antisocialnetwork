@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :payments 
+
 	def self.create_with_omniauth(auth)
 		create! do |user|
 			user.provider = auth["provider"]
@@ -11,6 +13,7 @@ class User < ActiveRecord::Base
     end
 	end
 
+<<<<<<< HEAD
   def facebook
     @facebook ||= Koala::Facebook::API.new(fb_access_token)
     block_given? ? yield(@facebook) : @facebook
@@ -23,4 +26,6 @@ class User < ActiveRecord::Base
   #   facebook { |fb| fb.get_connection("me", "friends").size }
   # end
 
+=======
+>>>>>>> master
 end

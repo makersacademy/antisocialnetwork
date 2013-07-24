@@ -65,6 +65,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (1.0.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -93,7 +96,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    pg (0.15.1)
+    pg (0.16.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -145,7 +148,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     treetop (1.4.14)
@@ -166,6 +169,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
   koala (~> 1.7.0rc1)
   omniauth
   omniauth-facebook
