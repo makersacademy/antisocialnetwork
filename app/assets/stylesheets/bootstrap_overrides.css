@@ -4,7 +4,11 @@
 	}	
 }
 
-#logo-large{
+body {
+	margin-bottom: 30px;
+}
+
+.center-align{
   text-align: center;
 }
 
