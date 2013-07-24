@@ -52,7 +52,6 @@ describe User do
     end
   end
 
-<<<<<<< HEAD
   describe "METHOD 'Facebook'" do
     context "when facebook token is valid" do
       before(:each) do
@@ -83,6 +82,4 @@ describe User do
   end
 
 end
-=======
-end
->>>>>>> master
+
