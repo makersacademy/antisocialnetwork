@@ -15,8 +15,7 @@
         <div class="container">
           <% if current_user %>
             <a class="brand" href="#">Anti Social Network</a>
-            Welcome <%= current_user.name %>!
-            <div class="nav-right">
+            <div class="brand" id="nav-right">
               <%= link_to "Sign Out", signout_path %>
             </div>
           <% else %>
