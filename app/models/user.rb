@@ -23,8 +23,11 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def get_statuses
-    facebook{ |fb| fb.get_connection("me", "statuses") }
+  def get_statuses(start_time, end_time)
+    facebook do |fb| 
+      # fb.get_connection("me", "statuses")
+      fb.fql_query("SELECT status_id, time, uid, message FROM status WHERE uid = #{self.uid} AND time > #{start_time} AND time < #{end_time}")
+    end
   end
 
 end

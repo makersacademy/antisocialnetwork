@@ -94,9 +94,14 @@ describe User do
     end
 
     it "should get an array of statuses" do
-      statuses_array = [{"id"=>"1392923067596094", "from"=>{"name"=>"John Smith", "id"=>"100006352424167"}, "message"=>"5:30", "updated_time"=>"2013-07-24T16:13:10+0000"}, {"id"=>"1391975747690826", "from"=>{"name"=>"John Smith", "id"=>"100006352424167"}, "message"=>"Test", "updated_time"=>"2013-07-23T16:34:31+0000"}, {"id"=>"1391861297702271", "from"=>{"name"=>"John Smith", "id"=>"100006352424167"}, "message"=>"Coding a great facebook app", "updated_time"=>"2013-07-23T14:39:31+0000"}]
-      Koala::Facebook::API.any_instance.stub(:get_connection).and_return(statuses_array)
-      user.get_statuses.should == statuses_array
+      start_time = 1374682390
+      end_time = 1374754290
+      statuses_array = [
+        {"status_id"=>1393634087524992, "time"=>1374754290, "uid"=>100006352424167, "message"=>"using FQL queries to limit by date and time"}, 
+        {"status_id"=>1393631927525208, "time"=>1374754241, "uid"=>100006352424167, "message"=>"using FQL queries"}, 
+        {"status_id"=>1392923067596094, "time"=>1374682390, "uid"=>100006352424167, "message"=>"5:30"}]
+      Koala::Facebook::API.any_instance.should_receive(:fql_query).and_return(statuses_array)
+      user.get_statuses(start_time, end_time).should == statuses_array
     end
   end
 
