@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :payments 
+  has_many :payments
+  has_many :activities
 
 	def self.create_with_omniauth(auth)
 		create! do |user|
@@ -21,9 +22,9 @@ class User < ActiveRecord::Base
     logger.info e.to_s
     nil
   end
-  
-  # def friends_count
-  #   facebook { |fb| fb.get_connection("me", "friends").size }
-  # end
+
+  def get_statuses
+    facebook{ |fb| fb.get_connection("me", "statuses") }
+  end
 
 end

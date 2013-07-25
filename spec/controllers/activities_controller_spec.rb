@@ -13,7 +13,7 @@ describe ActivitiesController do
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      response.should render_template "index"
+      response.should render_template "activities/_user_activities"
       response.should be_success
     end
   end

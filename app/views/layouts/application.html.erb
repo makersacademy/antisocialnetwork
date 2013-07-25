@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Antisocialnetwork</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
-  <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Antisocialnetwork</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
+    <%= csrf_meta_tags %>
+  </head>
 
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,6 +27,11 @@
         </div>
       </div>
     </div>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+
   	<%= yield %>
   </body>
 </html>
