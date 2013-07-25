@@ -25,8 +25,13 @@ class User < ActiveRecord::Base
 
   def get_statuses(start_time, end_time)
     facebook do |fb| 
-      # fb.get_connection("me", "statuses")
-      fb.fql_query("SELECT status_id, time, uid, message FROM status WHERE uid = #{self.uid} AND time > #{start_time} AND time < #{end_time}")
+      fb.fql_query("SELECT status_id, time, uid FROM status WHERE uid = #{self.uid} AND time > #{start_time} AND time < #{end_time}")
+    end
+  end
+
+  def get_location_posts(start_time, end_time)
+    facebook do |fb| 
+      fb.fql_query("SELECT post_id, timestamp, author_uid FROM location_post WHERE author_uid = #{self.uid} AND timestamp > #{start_time} AND timestamp < #{end_time}")
     end
   end
 
