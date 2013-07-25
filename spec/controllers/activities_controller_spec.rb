@@ -10,13 +10,13 @@ describe ActivitiesController do
     end
   end
 
-  describe "GET 'index'" do
-    it "returns http success" do
-      get 'index'
-      response.should render_template "index"
-      response.should be_success
-    end
-  end
+  # describe "GET 'index'" do
+  #   it "returns http success" do
+  #     get 'index'
+  #     response.should render_template "index"
+  #     response.should be_success
+  #   end
+  # end
 
   describe "POST 'create'" do
     it "should?...." do
