@@ -5,3 +5,9 @@ task :payments => :environment do
     Payment.charge_all_users
   end
 end
+
+task :fetch_activities => :environment do
+  puts "Fetching activity data..."
+  Activity.fetch_activities
+  puts "Activity data fetched."
+end
