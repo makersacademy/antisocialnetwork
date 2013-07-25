@@ -11,19 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723095537) do
+ActiveRecord::Schema.define(version: 20130724161347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.string   "uid"
+    t.string   "activity_id"
+    t.string   "activity_description"
+    t.datetime "activity_updated_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bill_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.string   "customer_id"
+    t.string   "stripe_customer_id"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fb_access_token"
+    t.string   "fb_access_expires_at"
   end
 
 end

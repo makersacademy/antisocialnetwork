@@ -1,3 +1,43 @@
-#logo-large{
+@media(min-width: 980px) {
+	body {
+		padding-top: 60px;
+	}	
+}
+
+body {
+	margin-bottom: 30px;
+}
+
+.center-align{
   text-align: center;
+}
+
+.navbar-fixed-top .container{
+	width: auto;
+}
+
+.navbar-fixed-top .navbar-inner{
+	padding: 0px;
+}
+
+.navbar .brand {
+	margin-left: 0px;
+	font-size: 18px;
+}
+
+#nav-right{
+	float : right;
+}
+
+.container {
+	height : fixed;
+}
+
+.hero-unit{
+	margin : 30px 7% 30px 7%;
+	padding: 40px;
+}
+
+.hello{
+	margin-left: 1%;
 }

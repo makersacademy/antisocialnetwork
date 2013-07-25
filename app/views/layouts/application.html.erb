@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Antisocialnetwork</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container brand">
-        <% if current_user %>
-          <%= link_to "Anti Social Network"%>
-          Welcome <%= current_user.name %>!
-          <%= link_to "Sign Out", signout_path %>
-        <% else %>
-          <%= link_to "Anti Social Network"%>
-          <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-        <% end %>
-			</div>
-		</div>
-	</div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <head>
+    <title>Antisocialnetwork</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
+    <%= csrf_meta_tags %>
+  </head>
 
-	<%= yield %>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <% if current_user %>
+            <a class="brand" href="#">Anti Social Network</a>
+            <div class="brand" id="nav-right">
+              <%= link_to "Sign Out", signout_path %>
+            </div>
+          <% else %>
+            <a class="brand" href="#">Anti Social Network</a>
+            <div class="brand" id="nav-right">
+              <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-</body>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+
+  	<%= yield %>
+  </body>
 </html>

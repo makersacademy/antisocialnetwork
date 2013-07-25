@@ -3,51 +3,41 @@ require 'spec_helper'
 describe UsersController do
 
   describe "GET 'index'" do
-    it "returns http success" do
+    it "renders a list of users" do
+      pending "requirement to show users is not yet established"
       get 'index'
       response.should be_success
     end
   end
 
-  describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
-    end
-  end
-
   describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
+    it "renders the user show page" do
+      get 'show', :id => 1
+      response.should render_template 'show'
       response.should be_success
     end
   end
 
-  describe "GET 'edit'" do
-    it "returns http success" do
-      get 'edit'
-      response.should be_success
+  describe "PUT 'update" do
+    it "should add the stripe customer id to database" do
+       user = FactoryGirl.create(:user)
+       Stripe::Customer.should_receive(:create).and_return(double(:id => '12345'))
+       put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
+       response.should redirect_to user_path(user)
+       user.reload
+       expect(user.stripe_customer_id).to eq('12345')
     end
   end
 
-  describe "GET 'update'" do
-    it "returns http success" do
-      get 'update'
-      response.should be_success
+  describe "DELETE 'destroy'" do
+    it "redirects to index" do
+      delete 'destroy', :id => 1
+      response.should redirect_to 'index'
     end
-  end
 
-  describe "GET 'destroy'" do
-    it "returns http success" do
-      get 'destroy'
-      response.should be_success
+    it "deletes the user from the database" do
+      pending "not clear at this point whether users should be deleted or just deactivated"
+      delete 'destroy', :id => 1
     end
   end
 

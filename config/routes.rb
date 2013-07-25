@@ -1,11 +1,14 @@
 Antisocialnetwork::Application.routes.draw do
+
+  root to: "sessions#new"
   get "sessions/new", :as => :signin
-  delete "sessions/destroy"
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
-  resources :users
-  root to: "sessions#new"
-  
+  resources :users, :only => [:index, :show, :edit, :update, :destroy]
+  resources :activities, :only => [:index, :show, :create]
+ 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
