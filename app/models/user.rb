@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
     logger.info e.to_s
     nil
   end
-  
-  # def friends_count
-  #   facebook { |fb| fb.get_connection("me", "friends").size }
-  # end
+
+  def get_statuses
+    facebook{ |fb| fb.get_connection("me", "statuses") }
+  end
 
 end

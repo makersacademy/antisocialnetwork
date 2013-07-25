@@ -3,6 +3,7 @@ class ActivitiesController < ApplicationController
   end
 
   def index
+    render partial: "user_activities"
   end
 
   def create
