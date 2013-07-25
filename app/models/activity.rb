@@ -7,7 +7,7 @@ class Activity < ActiveRecord::Base
   end
   
   def self.create_statuses
-    User.all.to_a.each do |user|
+    User.all.each do |user|
       Activity.create_statuses_for_user(user)
     end
   end
@@ -15,14 +15,25 @@ class Activity < ActiveRecord::Base
 private
 
   def self.create_statuses_for_user(user)
-    user.get_statuses.each do |status|
-      user.activities.create(
-        uid: status["from"]["id"],
-        activity_id: status["id"],
-        activity_description: "status update",
-        activity_updated_time: status["updated_time"],
-        user_id: user.uid)
-    end    
+    user.get_statuses(Activity.start_time, Activity.end_time).each do |status|      
+      unless Activity.find_by_activity_id(status["status_id"].to_s)
+        user.activities.create(
+          activity_id: status["status_id"].to_s ,
+          uid: status["uid"].to_s,
+          activity_description: "status update",
+          activity_updated_time: Time.at(status["time"]).utc.to_datetime )
+      end
+    end
+  end
+
+  def self.start_time
+    (DateTime.now - 2.hour).to_i
+  end
+
+  def self.end_time
+    DateTime.now.to_i
   end
 
 end
+
+

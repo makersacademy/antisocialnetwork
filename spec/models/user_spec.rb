@@ -100,7 +100,7 @@ describe User do
         {"status_id"=>1393634087524992, "time"=>1374754290, "uid"=>100006352424167, "message"=>"using FQL queries to limit by date and time"}, 
         {"status_id"=>1393631927525208, "time"=>1374754241, "uid"=>100006352424167, "message"=>"using FQL queries"}, 
         {"status_id"=>1392923067596094, "time"=>1374682390, "uid"=>100006352424167, "message"=>"5:30"}]
-      Koala::Facebook::API.any_instance.should_receive(:fql_query).and_return(statuses_array)
+      Koala::Facebook::API.any_instance.should_receive(:fql_query).at_least(:once).and_return(statuses_array)
       user.get_statuses(start_time, end_time).should == statuses_array
     end
   end
