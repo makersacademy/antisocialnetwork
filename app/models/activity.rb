@@ -1,6 +1,11 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
 
+  def self.fetch_activities
+    self.create_statuses
+    # ...
+  end
+  
   def self.create_statuses
     User.all.to_a.each do |user|
       Activity.create_statuses_for_user(user)
