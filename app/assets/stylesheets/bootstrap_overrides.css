@@ -5,7 +5,9 @@
 }
 
 body {
-	background: black url(missing.png) fixed center top;
+	background: black url(testbg.jpg) no-repeat fixed center top;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 
 #container{
@@ -16,11 +18,14 @@ body {
 	z-index : 100;
 }
 
-.hero-unit{
-	margin : 30px 40% 30px 7%;
-	padding: 40px;
+.row{
+	margin : 40px 7% 40px 7%;
 }
 
 .hello{
 	margin-left: 1%;
+}
+
+.center-align {
+	text-align: center;
 }
