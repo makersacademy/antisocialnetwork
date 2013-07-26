@@ -7,7 +7,7 @@ task :payments => :environment do
 end
 
 task :fetch_activities => :environment do
-  puts "Fetching activity data..."
-  Activity.fetch_activities
-  puts "Activity data fetched."
+  puts "Saving latest activity data..."
+  Activity.save_latest_activity
+  puts "Activity data fetched and saved."
 end

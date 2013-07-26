@@ -95,27 +95,5 @@ describe User do
     end
   end
 
-  describe "METHOD 'get_statuses'" do
-    it "should get an array of statuses" do
-      data_array = [
-        {"status_id"=>1393634087524992, "time"=>1374754290, "uid"=>100006352424167}, 
-        {"status_id"=>1393631927525208, "time"=>1374754241, "uid"=>100006352424167}, 
-        {"status_id"=>1392923067596094, "time"=>1374682390, "uid"=>100006352424167}]
-      Koala::Facebook::API.any_instance.should_receive(:fql_query).at_least(:once).and_return(data_array)
-      user.get_statuses(start_time, end_time).should == data_array
-    end
-  end
-
-  describe "METHOD 'get_location_posts'" do
-    it "should get an array of statuses" do
-      data_array = [
-        {"post_id"=>1393634087524992, "timestamp"=>1374754290, "author_uid"=>100006352424167}, 
-        {"post_id"=>1393631927525208, "timestamp"=>1374754241, "author_uid"=>100006352424167}, 
-        {"post_id"=>1392923067596094, "timestamp"=>1374682390, "author_uid"=>100006352424167}]
-      Koala::Facebook::API.any_instance.should_receive(:fql_query).at_least(:once).and_return(data_array)
-      user.get_location_posts(start_time, end_time).should == data_array
-    end
-  end
-
 end
 
