@@ -9,29 +9,13 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <% if current_user %>
-            <a class="brand" href="#">Anti Social Network</a>
-            <div class="brand" id="nav-right">
-              <%= link_to "Sign Out", signout_path %>
-            </div>
-          <% else %>
-            <a class="brand" href="#">Anti Social Network</a>
-            <div class="brand" id="nav-right">
-              <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+  <body>   
 
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <% end %>
 
   	<%= yield %>
+    
   </body>
 </html>
