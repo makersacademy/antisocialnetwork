@@ -12,7 +12,8 @@ describe UsersController do
 
   describe "GET 'show'" do
     it "renders the user show page" do
-      get 'show', :id => 1
+      user = FactoryGirl.create(:user)
+      get 'show', :id => user.id
       response.should render_template 'show'
       response.should be_success
     end
