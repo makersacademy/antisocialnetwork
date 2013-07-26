@@ -41,6 +41,20 @@ describe User do
     }
   end
 
+  let(:user) do
+    FactoryGirl.create(:user,
+      name: "John Smith",
+      email: "doubled@gmail.com",
+      provider: "facebook",
+      uid: "100006352424167",
+      fb_access_token: "ABCDEF...",
+      fb_access_expires_at: "1321747205"
+    )
+  end
+
+  let(:start_time) {1374682390}
+  let(:end_time) {1374754290}
+
   describe "METHOD 'create_with_omniauth'" do
     context "with valid details" do
       it "should add the user to the database" do
@@ -82,26 +96,24 @@ describe User do
   end
 
   describe "METHOD 'get_statuses'" do
-    let(:user) do
-      FactoryGirl.create(:user,
-        name: "John Smith",
-        email: "doubled@gmail.com",
-        provider: "facebook",
-        uid: "100006352424167",
-        fb_access_token: "ABCDEF...",
-        fb_access_expires_at: "1321747205"
-      )
-    end
-
     it "should get an array of statuses" do
-      start_time = 1374682390
-      end_time = 1374754290
-      statuses_array = [
-        {"status_id"=>1393634087524992, "time"=>1374754290, "uid"=>100006352424167, "message"=>"using FQL queries to limit by date and time"}, 
-        {"status_id"=>1393631927525208, "time"=>1374754241, "uid"=>100006352424167, "message"=>"using FQL queries"}, 
-        {"status_id"=>1392923067596094, "time"=>1374682390, "uid"=>100006352424167, "message"=>"5:30"}]
-      Koala::Facebook::API.any_instance.should_receive(:fql_query).and_return(statuses_array)
-      user.get_statuses(start_time, end_time).should == statuses_array
+      data_array = [
+        {"status_id"=>1393634087524992, "time"=>1374754290, "uid"=>100006352424167}, 
+        {"status_id"=>1393631927525208, "time"=>1374754241, "uid"=>100006352424167}, 
+        {"status_id"=>1392923067596094, "time"=>1374682390, "uid"=>100006352424167}]
+      Koala::Facebook::API.any_instance.should_receive(:fql_query).at_least(:once).and_return(data_array)
+      user.get_statuses(start_time, end_time).should == data_array
+    end
+  end
+
+  describe "METHOD 'get_location_posts'" do
+    it "should get an array of statuses" do
+      data_array = [
+        {"post_id"=>1393634087524992, "timestamp"=>1374754290, "author_uid"=>100006352424167}, 
+        {"post_id"=>1393631927525208, "timestamp"=>1374754241, "author_uid"=>100006352424167}, 
+        {"post_id"=>1392923067596094, "timestamp"=>1374682390, "author_uid"=>100006352424167}]
+      Koala::Facebook::API.any_instance.should_receive(:fql_query).at_least(:once).and_return(data_array)
+      user.get_location_posts(start_time, end_time).should == data_array
     end
   end
 
