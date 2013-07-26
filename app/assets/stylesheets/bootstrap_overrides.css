@@ -5,32 +5,15 @@
 }
 
 body {
-	margin-bottom: 30px;
+	background: black url(testbg.jpg) no-repeat fixed center top;
 }
 
-.center-align{
-  text-align: center;
-}
-
-.navbar-fixed-top .container{
-	width: auto;
-}
-
-.navbar-fixed-top .navbar-inner{
-	padding: 0px;
-}
-
-.navbar .brand {
-	margin-left: 0px;
-	font-size: 18px;
-}
-
-#nav-right{
-	float : right;
-}
-
-.container {
-	height : fixed;
+#container{
+	position : absolute;
+	width : 100%;
+	background : #f1f1f1;
+	top : 290px;
+	z-index : 100;
 }
 
 .hero-unit{
