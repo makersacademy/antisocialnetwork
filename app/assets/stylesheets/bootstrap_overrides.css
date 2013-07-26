@@ -18,12 +18,14 @@ body {
 	z-index : 100;
 }
 
-.hero-unit{
-	margin : 30px 7% 30px 7%;
-	padding: 2%;
-	border: 1px dashed;
+.row{
+	margin : 40px 7% 40px 7%;
 }
 
 .hello{
 	margin-left: 1%;
+}
+
+.center-align {
+	text-align: center;
 }
