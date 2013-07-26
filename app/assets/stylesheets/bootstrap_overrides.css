@@ -5,7 +5,7 @@
 }
 
 body {
-	background: black url(testbg.jpg) no-repeat fixed center top;
+	background: black url(missing.png) fixed center top;
 }
 
 #container{
@@ -17,7 +17,7 @@ body {
 }
 
 .hero-unit{
-	margin : 30px 7% 30px 7%;
+	margin : 30px 40% 30px 7%;
 	padding: 40px;
 }
 
