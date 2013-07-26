@@ -44,6 +44,8 @@ describe Activity do
       User.stub(:all).and_return([user1, user2, user3])
       User.count.should == 3
 
+      Activity.stub(:fetch_activity_from_facebook).and_return([])
+
       Activity.stub(:fetch_activity_from_facebook).with(:status, user1).and_return(user1_status)
       Activity.stub(:fetch_activity_from_facebook).with(:location_post, user1).and_return(user1_location_post)
 

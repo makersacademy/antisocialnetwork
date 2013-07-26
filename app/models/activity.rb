@@ -2,7 +2,7 @@ class Activity < ActiveRecord::Base
   belongs_to :user
 
   # Number of hours of Activity back data to fetch
-  HOURS_OF_DATA = 1
+  HOURS_OF_DATA = 30
 
   # Hash constant that stores the facebook table columns in the following format
   # { [facebook table name] => {
@@ -17,15 +17,43 @@ class Activity < ActiveRecord::Base
       :activity_updated_time => "time", 
       :activity_description => "status update"
     },
-    :location_post => {
-      :uid => "author_uid", 
-      :activity_id => "post_id", 
-      :activity_updated_time => "timestamp", 
-      :activity_description => "location post"
+    :photo => {
+      :uid => "owner",
+      :activity_id => "pid",
+      :activity_updated_time => "modified",
+      :activity_description => "add or modify photo"
+    },
+    :album => {
+      :uid => "owner",
+      :activity_id => "aid",
+      :activity_updated_time => "created",
+      :activity_description => "add album"
+    },
+    :event => {
+      :uid => "creator",
+      :activity_id => "eid",
+      :activity_updated_time => "update_time",
+      :activity_description => "add or modify event"
+    },
+    :checkin => {
+      :uid => "author_uid",
+      :activity_id => "checkin_id",
+      :activity_updated_time => "timestamp",
+      :activity_description => "checkin"
+    },
+    :link => {
+      :uid => "owner",
+      :activity_id => "link_id",
+      :activity_updated_time => "created_time",
+      :activity_description => "add link"
+    },
+    :video => {
+      :uid => "owner",
+      :activity_id => "vid",
+      :activity_updated_time => "created_time",
+      :activity_description => "upload video"
     }
   }
-
-  YAML.load('.yml')
 
   def self.save_latest_activity
     User.all.each do |user|
@@ -33,7 +61,8 @@ class Activity < ActiveRecord::Base
     end
   end
 
-  private
+
+private
 
   # Fetches a user's activities
   # and saves them in the database unless they are already in the database
