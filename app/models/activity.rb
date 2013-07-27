@@ -1,10 +1,8 @@
+
 class Activity < ActiveRecord::Base
   belongs_to :user
 
-  # Number of hours of Activity back data to fetch
-  HOURS_OF_DATA = 30
-
-  # Hash constant that stores the facebook table columns in the following format
+  # Hash constant that maps the activity field names recognized by this app to the facebook column names
   # { [facebook table name] => {
   #   :uid => [facebook column name for uid], 
   #   :activity_id => [facebook column name for activity_id], 
@@ -55,16 +53,14 @@ class Activity < ActiveRecord::Base
     }
   }
 
-  def self.save_latest_activity(time_span)
+  def self.save_latest_activities(time_span)
     User.all.each do |user|
-      Activity.save_latest_activity_for_user(user, time_span)
+      Activity.save_latest_activities_for_user(user, time_span)
     end
   end
 
-  # Fetches a user's activities
-  # and saves them in the database unless they are already in the database
-  def self.save_latest_activity_for_user(user, time_span)
-    Activity.fetch_activities_for_user(user, time_span).each do |activity|      
+  def self.save_latest_activities_for_user(user, time_span)
+    Activity.activities_for_user(user, time_span).each do |activity|      
       user.activities.create(activity) unless Activity.find_by_activity_id(activity[:activity_id].to_s)
     end
   end
@@ -72,46 +68,39 @@ class Activity < ActiveRecord::Base
 private
 
 
-  def self.fetch_activities_for_user(user, time_span)
+  def self.activities_for_user(user, time_span)
     Activity::FACEBOOK_TABLES.map do |table_name, fields|
-      fetch_formatted_activity_for_user(table_name, user, time_span)
+      processed_activities_for_user(table_name, user, time_span)
     end.inject(:+)
   end
 
-  def self.fetch_formatted_activity_for_user(table_name, user, time_span)
-      fetch_activity_from_facebook(table_name, user, time_span).map do |raw_activity| 
-        format_activity(raw_activity, table_name)
+  def self.processed_activities_for_user(table_name, user, time_span)
+      raw_activities_from_facebook(table_name, user, time_span).map do |raw_activity| 
+        processed_activity(raw_activity, table_name)
       end
   end
 
-  def self.fetch_activity_from_facebook(table_name, user, time_span)
+  def self.raw_activities_from_facebook(table_name, user, time_span)
     user.facebook { |fb| fb.fql_query(fql_string(table_name, user, time_span)) } || []
   end
 
-  # Converts an activity to a standard format
-  # for storage in the database
-  def self.format_activity(raw_activity, table_name)
-    formatted_activity = raw_activity.map do |facebook_field, activity_attribute|
+  def self.processed_activity(raw_activity, table_name)
+    activity = raw_activity.map do |facebook_field, activity_attribute|
       [ Activity::FACEBOOK_TABLES[table_name].key(facebook_field), activity_attribute ]
     end
-    formatted_activity = Hash[formatted_activity]
-    formatted_activity[:activity_updated_time] = Time.at(formatted_activity[:activity_updated_time]).utc.to_datetime
-    formatted_activity.merge!({:activity_description => Activity::FACEBOOK_TABLES[table_name][:activity_description]})
+    activity = Hash[activity]
+    activity[:activity_updated_time] = Time.at(activity[:activity_updated_time]).utc.to_datetime
+    activity.merge!({:activity_description => Activity::FACEBOOK_TABLES[table_name][:activity_description]})
   end
 
-  # Constructs a facebook query language query string
-  # by substituting table specific table name and table columns into a standardized query string
-  # Facebook table specifics are retrieved from the FACEBOOK_TABLES hash
   def self.fql_string(table_name, user, time_span)
     "SELECT #{FACEBOOK_TABLES[table_name][:activity_id]}, #{FACEBOOK_TABLES[table_name][:activity_updated_time]}, #{FACEBOOK_TABLES[table_name][:uid]} FROM #{table_name} WHERE #{FACEBOOK_TABLES[table_name][:uid]} = #{user.uid} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} > #{start_time(time_span)} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} < #{end_time}"
   end
 
-  # Returns a UNIX epoque time based on the current time
   def self.start_time(time_span)
     (Time.now.utc - time_span).to_i
   end
 
-  # Returns a UNIX epoque time based on the current time
   def self.end_time
     Time.now.utc.to_i
   end

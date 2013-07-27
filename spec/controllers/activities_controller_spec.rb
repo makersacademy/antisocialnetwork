@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 describe ActivitiesController do
@@ -28,12 +29,12 @@ describe ActivitiesController do
 
     describe "POST 'create'" do  
       it "should retrieve the users historic facebook data" do
-        Activity.should_receive(:save_latest_activity_for_user).with(current_user1, 30.day).and_return(nil)
+        Activity.should_receive(:save_latest_activities_for_user).with(current_user1, 30.day).and_return(nil)
         post 'create'
       end
 
       it "should redirect to the user profile page" do
-        Activity.stub(:save_latest_activity_for_user).with(current_user1, 30.day).and_return(nil)
+        Activity.stub(:save_latest_activities_for_user).with(current_user1, 30.day).and_return(nil)
         post 'create'
         response.should redirect_to user_path(current_user1)
       end
