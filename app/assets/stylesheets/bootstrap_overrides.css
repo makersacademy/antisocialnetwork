@@ -10,7 +10,7 @@ body {
 	padding-right: 0 !important;
 }
 
-#container{
+.container-fluid{
 	position : absolute;
 	width : 100%;
 	background : #f1f1f1;
