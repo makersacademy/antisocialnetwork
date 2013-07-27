@@ -55,37 +55,37 @@ class Activity < ActiveRecord::Base
     }
   }
 
-  def self.save_latest_activity
+  def self.save_latest_activity(time_span)
     User.all.each do |user|
-      Activity.save_latest_activity_for_user(user)
+      Activity.save_latest_activity_for_user(user, time_span)
     end
   end
 
-
-private
-
   # Fetches a user's activities
   # and saves them in the database unless they are already in the database
-  def self.save_latest_activity_for_user(user)
-    Activity.fetch_activities_for_user(user).each do |activity|      
+  def self.save_latest_activity_for_user(user, time_span)
+    Activity.fetch_activities_for_user(user, time_span).each do |activity|      
       user.activities.create(activity) unless Activity.find_by_activity_id(activity[:activity_id].to_s)
     end
   end
 
-  def self.fetch_activities_for_user(user)
+private
+
+
+  def self.fetch_activities_for_user(user, time_span)
     Activity::FACEBOOK_TABLES.map do |table_name, fields|
-      fetch_formatted_activity_for_user(table_name, user)
+      fetch_formatted_activity_for_user(table_name, user, time_span)
     end.inject(:+)
   end
 
-  def self.fetch_formatted_activity_for_user(table_name, user)
-      fetch_activity_from_facebook(table_name, user).map do |raw_activity| 
+  def self.fetch_formatted_activity_for_user(table_name, user, time_span)
+      fetch_activity_from_facebook(table_name, user, time_span).map do |raw_activity| 
         format_activity(raw_activity, table_name)
       end
   end
 
-  def self.fetch_activity_from_facebook(table_name, user)
-    user.facebook { |fb| fb.fql_query(fql_string(table_name, user)) } || []
+  def self.fetch_activity_from_facebook(table_name, user, time_span)
+    user.facebook { |fb| fb.fql_query(fql_string(table_name, user, time_span)) } || []
   end
 
   # Converts an activity to a standard format
@@ -102,18 +102,18 @@ private
   # Constructs a facebook query language query string
   # by substituting table specific table name and table columns into a standardized query string
   # Facebook table specifics are retrieved from the FACEBOOK_TABLES hash
-  def self.fql_string(table_name, user)
-    "SELECT #{FACEBOOK_TABLES[table_name][:activity_id]}, #{FACEBOOK_TABLES[table_name][:activity_updated_time]}, #{FACEBOOK_TABLES[table_name][:uid]} FROM #{table_name} WHERE #{FACEBOOK_TABLES[table_name][:uid]} = #{user.uid} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} > #{start_time} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} < #{end_time}"
+  def self.fql_string(table_name, user, time_span)
+    "SELECT #{FACEBOOK_TABLES[table_name][:activity_id]}, #{FACEBOOK_TABLES[table_name][:activity_updated_time]}, #{FACEBOOK_TABLES[table_name][:uid]} FROM #{table_name} WHERE #{FACEBOOK_TABLES[table_name][:uid]} = #{user.uid} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} > #{start_time(time_span)} AND #{FACEBOOK_TABLES[table_name][:activity_updated_time]} < #{end_time}"
   end
 
   # Returns a UNIX epoque time based on the current time
-  def self.start_time
-    (DateTime.now - HOURS_OF_DATA.hour).to_i
+  def self.start_time(time_span)
+    (Time.now.utc - time_span).to_i
   end
 
   # Returns a UNIX epoque time based on the current time
   def self.end_time
-    DateTime.now.to_i
+    Time.now.utc.to_i
   end
 
 end

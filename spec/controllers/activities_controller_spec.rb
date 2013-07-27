@@ -18,10 +18,25 @@ describe ActivitiesController do
     end
   end
 
-  describe "POST 'create'" do
-    it "should?...." do
-      pending "implementation of create not yet clear"
-      post 'create'
+  context "user signing in for the first time" do
+
+    let(:current_user1){User.create}
+
+    before(:each) do
+      session[:user_id] = current_user1.id
+    end
+
+    describe "POST 'create'" do  
+      it "should retrieve the users historic facebook data" do
+        Activity.should_receive(:save_latest_activity_for_user).with(current_user1, 30.day).and_return(nil)
+        post 'create'
+      end
+
+      it "should redirect to the user profile page" do
+        Activity.stub(:save_latest_activity_for_user).with(current_user1, 30.day).and_return(nil)
+        post 'create'
+        response.should redirect_to user_path(current_user1)
+      end
     end
   end
 
