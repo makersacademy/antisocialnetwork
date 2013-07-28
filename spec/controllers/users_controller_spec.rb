@@ -1,4 +1,4 @@
-require 'spec_helper'
+3require 'spec_helper'
 
 describe UsersController do
 
