@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @charities=Charity.all
   end
 
   def create

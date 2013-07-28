@@ -1,0 +1,37 @@
+@media(min-width: 980px) {
+  body {
+    padding-top: 60px;
+  } 
+}
+
+body {
+  background: black url(banner2.jpg) no-repeat fixed center top;
+  background-attachment: fixed;
+}
+
+#container{
+  position : absolute;
+  width : 100%;
+  background : #f1f1f1;
+  top : 330px;
+  z-index : 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#row{
+  margin : 40px 7% 40px 7%;
+}
+
+.hello{
+  margin-left: 1%;
+}
+
+.center-align {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
+
