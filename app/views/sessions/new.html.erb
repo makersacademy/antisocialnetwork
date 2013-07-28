@@ -1,12 +1,10 @@
 <div class="container-fluid" id="container">
-
   <div class="row" id="row">
   	<div class="span7">  
-      <%= link_to image_tag('6x4test.jpg') %>
+      <%= link_to image_tag('box.jpg') %>
     </div>
-
     <div class="span5">
-      <h2>Welcome to givr!</h2>
+      <h2>Welcome to Givr!</h2>
       <ol>
         <li>
           Lipso bipsi textyu text Lipso bipsi textyu textLipso bipsi textyu textLipso bipsi textyu textLipso bipsi textyu text Lipso bipsi textyu text Lipso bipsi textyu text
@@ -23,23 +21,17 @@
       </div>
     </div>  
   </div>
-
-  <div class="row" id="row">
-    <h2 class="center-align">Our Charities</h2>
+  <div class="row" id="row"> 
+   <h2 class="center-align">Our Charities</h2>
+    <% @charities.each do |charity| %>
     <div class="span4">
-      <h3 class="center-align">Charity 1</h3>
-      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+      <h3 class="center-align"><%= charity.name %></h3>
+        <%= image_tag(charity.image) %>
+        <p><%= charity.activities %></p>
+        <p class="center-align"><%= link_to charity.url %></p>
     </div>
-    <div class="span4">
-      <h3 class="center-align">Charity 2</h3>
-      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-    </div>
-    <div class="span4">
-      <h3 class="center-align">Charity 3</h3>
-      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-    </div>    
+    <% end %>
   </div>
-
   <div class="row" id="row">
     <h2 class="center-align">What people are saying about Givr</h2>
     <div class="span4">
@@ -55,9 +47,7 @@
       <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
     </div>    
   </div>
-
-  <div class="row center-align">
+  <div class="row center-align" id="row">
     <button class="btn"><%= link_to "Sign up with Facebook", "/auth/facebook" %></button>
   </div>
-
 </div>
