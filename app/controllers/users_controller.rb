@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
+     @charities = Charity.all
   end
 
   def edit
