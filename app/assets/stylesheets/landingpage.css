@@ -6,6 +6,7 @@
 
 body {
   background: black url(background_logo-1a.jpg) no-repeat fixed center top;
+  background-size : fill;
   background-attachment: fixed;
   background-size:1280px;
 }
@@ -23,10 +24,6 @@ body {
 }
 
 
-#row{
-  margin : 40px 7% 40px 7%;
-}
-
 .hello{
   margin-left: 1%;
 }
@@ -34,6 +31,7 @@ body {
 .center-align {
   text-align: center;
 }
+
 
 p {
   text-align: justify;
