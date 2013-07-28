@@ -18,7 +18,7 @@ Charity.create( name: "The British Red Cross Society",
 
 Charity.create( name: "Cancer Research UK", 
                 registered_number: 1089464,
-                activities: " Cancer Researchaim aims to save lives by preventing, controlling and curing cancer. 
+                activities: " Cancer Research aims to save lives by preventing, controlling and curing cancer. 
                               They do this through funding world-class research into all aspects of cancer, providing 
                               information, and influencing public policy.",
                 image: "cancer_research.jpg",
