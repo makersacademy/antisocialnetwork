@@ -1,12 +1,13 @@
 @media(min-width: 980px) {
   body {
-    padding-top: 60px;
-  } 
+    padding-top: 70px;
+  }
 }
 
 body {
-  background: black url(banner2.jpg) no-repeat fixed center top;
+  background: black url(background_logo-1a.jpg) no-repeat fixed center top;
   background-attachment: fixed;
+  background-size:1280px;
 }
 
 #container{
@@ -14,10 +15,13 @@ body {
   width : 100%;
   background : #f1f1f1;
   top : 330px;
-  z-index : 100%;
   padding-left: 0;
   padding-right: 0;
 }
+#img-circle{
+
+}
+
 
 #row{
   margin : 40px 7% 40px 7%;
