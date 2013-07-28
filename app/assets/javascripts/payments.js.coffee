@@ -31,5 +31,5 @@ payment =
       $('#stripe_card_token').val(response.id)
       $('#payment_form')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>' + response.error.message + '</div>')
       $('input[type=submit]').attr('disabled', false)

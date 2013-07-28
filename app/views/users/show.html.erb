@@ -1,16 +1,39 @@
+<%= render "users/navbar" %>
 
-<p class="hello">Hello <%= current_user.name %></p>
+<div class="main_content container">
 
-<div class="hero-unit">
-	<p>Givr Blurb - Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Facebook Activity Trend</h3>
+  </div>
+  <%= render "activities/activity_trends" %>
 </div>
 
-<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Facebook Activity Breakdown</h3>
+  </div>
+  <%= render "activities/activity_breakdowns" %>
+</div>
 
-<%= render "activities/user_activities" %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Available Charities</h3>
+  </div>
+  <%= render "users/charity_selector" %>
+</div>
 
-<%= render "users/card_details_form" %>
-
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#card-details-pane">
+  Set up donations
+</button>
+<div id="card-details-pane" class="panel panel-primary collapse in">
+  <div class="panel-heading">
+    <h3 class="panel-title">Donation Payments</h3>
+  </div>
+  <%= render "users/card_details_form" %>
+</div>
+<br/>
+</div>
+<br/>
+<br/>
 <%= render "users/loading_data" %>
-
-</div>

@@ -24,7 +24,7 @@ describe SessionsController do
         it "creates the user" do
           User.should_receive(:find_by_provider_and_uid).and_return(nil)
           User.should_receive(:create_with_omniauth).and_return(new_user)
-          Activity.stub(:save_latest_activity_for_user).and_return(nil)
+          Activity.stub(:save_latest_activities_for_user).and_return(nil)
           get 'create', :provider => 'facebook'
         end
 
@@ -51,7 +51,7 @@ describe SessionsController do
 
         it "does NOT retrieve the latest activity for the user" do
           User.should_receive(:find_by_provider_and_uid).and_return(User.new)
-          Activity.should_not_receive(:save_latest_activity_for_user)
+          Activity.should_not_receive(:save_latest_activities_for_user)
           get 'create', :provider => 'facebook'
         end
       end
