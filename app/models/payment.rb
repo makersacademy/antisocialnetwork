@@ -11,7 +11,7 @@ class Payment < ActiveRecord::Base
   end  
 
   def self.create_bill_amount(user_id, amount)
-    Payment.create(:user_id => user_id, :bill_amount => amount)
+    self.create(:user_id => user_id, :bill_amount => amount)
   end  
 
   def self.make_payment(amount, user)
