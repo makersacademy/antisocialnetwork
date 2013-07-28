@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "profile", media: "all", "data-turbolinks-track" => true %>
+
+
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+  <h1 class="navbar-brand pull-left">Givr</h1>
+  <ul class="nav navbar-nav pull-right">
+    <button type="button" class="btn btn-default navbar-btn">Sign out</button>
+    <p class="navbar-text">Signed in as <%= current_user.name %></p>
+  </ul>
+  </div>
+</div>
+
+<div class="container">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+</div>

@@ -1,3 +1,4 @@
+
 desc "This task is for managing the payments"
 
 task :payments => :environment do
@@ -7,7 +8,7 @@ task :payments => :environment do
 end
 
 task :fetch_activities => :environment do
-  puts "Saving latest activity data..."
-  Activity.save_latest_activity
-  puts "Activity data fetched and saved."
+  puts "Fetching and saving latest activity data from the last 1 to 2 hours..."
+  Activity.save_latest_activities(2.hours)
+  puts "Activity data retrieval and saving task complete."
 end

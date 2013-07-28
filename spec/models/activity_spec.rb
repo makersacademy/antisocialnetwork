@@ -1,5 +1,5 @@
-require 'spec_helper'
 
+require 'spec_helper'
 
 describe Activity do
   let(:user1) { FactoryGirl.create(:user, :uid => "100006352424167") }
@@ -15,13 +15,13 @@ describe Activity do
       "uid" => 100006352424167}]
   }
 
-  let(:user1_location_post) {
-    [{"post_id" =>1393634087524992, 
-      "timestamp" => 1374754290, 
-      "author_uid" => 100006352424167},
-     {"post_id" =>1393631927525208, 
-      "timestamp" => 1374754241, 
-      "author_uid" => 100006352424167}]
+  let(:user1_photo) {
+    [{"pid" =>1393634087524921, 
+      "modified" => 1374754290, 
+      "owner" => 100006352424167},
+     {"pid" =>1393631927525222, 
+      "modified" => 1374754241, 
+      "owner" => 100006352424167}]
   }
 
   let(:user2_status) {
@@ -36,38 +36,62 @@ describe Activity do
       "uid" => 100006352424169}]
   }
 
-  describe "METHOD 'save_latest_activity'" do
-    before(:each) do
-      # user1.save!
-      # user2.save!
-      # user3.save!
-      User.stub(:all).and_return([user1, user2, user3])
-      User.count.should == 3
+  let(:time_span) { 1.hour }
 
-      Activity.stub(:fetch_activity_from_facebook).with(:status, user1).and_return(user1_status)
-      Activity.stub(:fetch_activity_from_facebook).with(:location_post, user1).and_return(user1_location_post)
+  before(:each) do
+    User.stub(:all).and_return([user1, user2, user3])
+    User.count.should == 3
+    
 
-      Activity.stub(:fetch_activity_from_facebook).with(:status, user2).and_return(user2_status)
-      Activity.stub(:fetch_activity_from_facebook).with(:location_post, user2).and_return([])
+    Activity.stub(:raw_activities_from_facebook).and_return([])
 
-      Activity.stub(:fetch_activity_from_facebook).with(:status, user3).and_return(user3_status)
-      Activity.stub(:fetch_activity_from_facebook).with(:location_post, user3).and_return([])
-    end
+    Activity.stub(:raw_activities_from_facebook).with(:status, user1, time_span).and_return(user1_status)
+    Activity.stub(:raw_activities_from_facebook).with(:photo, user1, time_span).and_return(user1_photo)
+
+    Activity.stub(:raw_activities_from_facebook).with(:status, user2, time_span).and_return(user2_status)
+    Activity.stub(:raw_activities_from_facebook).with(:photo, user2, time_span).and_return([])
+
+    Activity.stub(:raw_activities_from_facebook).with(:status, user3, time_span).and_return(user3_status)
+    Activity.stub(:raw_activities_from_facebook).with(:photo, user3, time_span).and_return([])
+  end
+
+  describe "METHOD 'save_latest_activities_for_user'" do
 
     context "with no statuses already in the database" do
       it "should extract status data from the user and add statuses to activity table" do
         Activity.count.should == 0
-        Activity.save_latest_activity
+        Activity.save_latest_activities_for_user(user1, time_span)
         Activity.count.should == 4
       end
     end
 
     context "with some statuses already in the database" do
       it "should not add a status that is already in the database" do
-        Activity.save_latest_activity
+        Activity.save_latest_activities_for_user(user1, time_span)
         Activity.count.should == 4
-        Activity.save_latest_activity
+        Activity.save_latest_activities_for_user(user1, time_span)
         Activity.count.should == 4
+      end
+    end
+
+  end
+
+  describe "METHOD 'save_latest_activities'" do
+
+    context "with no statuses already in the database" do
+      it "should extract status data from the user and add statuses to activity table" do
+        Activity.count.should == 0
+        Activity.save_latest_activities(time_span)
+        Activity.count.should == 6
+      end
+    end
+
+    context "with some statuses already in the database" do
+      it "should not add a status that is already in the database" do
+        Activity.save_latest_activities(time_span)
+        Activity.count.should == 6
+        Activity.save_latest_activities(time_span)
+        Activity.count.should == 6
       end
     end
 
