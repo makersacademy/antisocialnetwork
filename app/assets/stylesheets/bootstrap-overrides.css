@@ -30,10 +30,6 @@ body {
   padding-right: 0;
 }
 
-#img-circle { 
-
-}
-
 .hello{
   margin-left: 1%;
 }
@@ -46,7 +42,14 @@ p {
   text-align: justify;
 }
 
-#main_content { padding-top: 70px; }
+#main_content { 
+  padding-top: 70px; 
+}
+
+.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 /* Chart Section */
 
