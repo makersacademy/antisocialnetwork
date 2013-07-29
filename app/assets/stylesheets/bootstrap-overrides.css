@@ -29,10 +29,6 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
-#img-circle{
-
-}
-
 
 .hello{
   margin-left: 1%;
@@ -42,8 +38,46 @@ body {
   text-align: center;
 }
 
-
 p {
   text-align: justify;
 }
+
+#main_content { 
+  padding-top: 70px; 
+}
+
+.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Chart Section */
+
+#chart_area {
+  font: 10px sans-serif;
+  width: 100%;
+  height: 500px;
+}
+
+@media (max-width: 767px) { 
+  #chart_area {
+    height: 250px;
+  }
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: blue;
+}
+
+.x.axis path {
+  display: none;
+}
+
 
