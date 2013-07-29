@@ -13,7 +13,7 @@ Charity.create( name: "The British Red Cross Society",
                               They are part of a global network of volunteers, responding to natural
                               disasters, conflicts and individual emergencies. They enable vulnerable people
                               at home and overseas to prepare for and respond to emergencies in their own communities.",
-                image: "charity-logo-spam4-A",
+                image: "charity-logo-spam4-A.jpg",
                 url: "http://www.redcross.org.uk/")
 
 Charity.create( name: "Cancer Research UK",
@@ -21,7 +21,7 @@ Charity.create( name: "Cancer Research UK",
                 activities: " Cancer Research aims to save lives by preventing, controlling and curing cancer.
                               They do this through funding world-class research into all aspects of cancer, providing
                               information, and influencing public policy.",
-                image: "charity-logo-spam4-B",
+                image: "charity-logo-spam4-B.jpg",
                 url: "http://www.cancerresearchuk.org/")
 
 Charity.create( name: "Barnardo's",
@@ -29,6 +29,6 @@ Charity.create( name: "Barnardo's",
                 activities: " Barnardo's aim to promote the care, safety and upbringing of children and young people by
                               supporting and assisting those in need, their families and their carers; promoting their
                               health, and advancing their education.",
-                image: "charity-logo-spam4-C",
+                image: "charity-logo-spam4-C.jpg",
                 url: "http://www.barnardos.org.uk/")
 d

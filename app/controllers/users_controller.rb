@@ -1,15 +1,10 @@
 require 'stripe'
 
 class UsersController < ApplicationController
-  def index
-  end
 
   def show
     @user = User.find(params[:id])
     @charities = Charity.all
-  end
-
-  def edit
   end
 
   def update
@@ -23,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    redirect_to 'index'
+    redirect_to :root
   end
 
 private
