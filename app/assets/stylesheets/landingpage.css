@@ -6,8 +6,7 @@
 
 body {
   background: black url(banner2.jpg) no-repeat fixed center top;
-  /*background-size : fill;*/
-  background-attachment: fixed
+  background-attachment: fixed;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
