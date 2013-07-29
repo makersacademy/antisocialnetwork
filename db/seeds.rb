@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+
 Charity.create( name: "The British Red Cross Society",
                 registered_number: 220949,
                 activities: " The British Red Cross helps people in crisis, whoever and wherever they are.
@@ -31,4 +32,3 @@ Charity.create( name: "Barnardo's",
                               health, and advancing their education.",
                 image: "charity-logo-spam4-C",
                 url: "http://www.barnardos.org.uk/")
-d
