@@ -16,7 +16,7 @@ body {
   background: black url(background_logo-1a.jpg) no-repeat fixed center top;
   background-size : fill;
   background-attachment: fixed;
-  background-size:1280px;
+  /*background-size:1280px;*/
 }
 
 #container{
