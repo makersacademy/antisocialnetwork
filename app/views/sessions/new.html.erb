@@ -18,7 +18,7 @@
           </li>
         </ol>
         <div class="center-align">
-          <%= link_to "Sign up with Facebook", "/auth/facebook", class: "btn btn-primary btn-large btn-block" %>
+          <%= link_to "Sign up with Facebook", "/auth/facebook", class: "btn btn-primary btn-large sign-up" %>
         </div>
       </div>  
     </div>
@@ -26,10 +26,9 @@
      <h2 class="center-align">Our Charities</h2>
       <% @charities.each do |charity| %>
       <div class="span4">
-        <h3 class="center-align"><%= charity.name %></h3>
           <%= image_tag(charity.image) %>
-          <p><%= charity.activities %></p>
-          <p class="center-align"><%= link_to charity.url %></p>
+          <p class="charity"><%= charity.activities %></p>
+          <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
       </div>
       <% end %>
     </div>
@@ -51,7 +50,7 @@
       <p>I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
     </div>
     </div>
-    <div class="row center-align" id="row">
+    <div class="row center-align">
     <%= link_to "Sign up with Facebook", "/auth/facebook", :class=> "btn btn-primary btn-large" %>
     </div>
   </div>
