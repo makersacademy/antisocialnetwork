@@ -10,8 +10,10 @@ class Payment < ActiveRecord::Base
     user_activity * amount
   end  
 
-  def self.create_bill_amount(user_id, amount)
-    self.create(:user_id => user_id, :bill_amount => amount)
+  def self.create_bill_amount(user, amount)
+    self.create(:user_id => user.id, 
+                :bill_amount => amount,
+                :charity => user.charity.name)
   end  
 
   def self.make_payment(amount, user)
@@ -19,7 +21,7 @@ class Payment < ActiveRecord::Base
                           :currency => "GBP", 
                           :description => "Weekly payment", 
                           :customer => user.stripe_customer_id)
-    self.create_bill_amount(user.id, amount)  
+    self.create_bill_amount(user, amount)  
   end
 
   def self.charge_all_users

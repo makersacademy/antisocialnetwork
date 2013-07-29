@@ -22,7 +22,11 @@ describe UsersController do
     end
 
     it "should update the charity" do
-      pending "SPEC NEEDS WRITING"
+      user = FactoryGirl.create(:user)
+      put :update, :id => user.id, :charity_id => 1
+      response.should redirect_to user_path(user)
+      user.reload
+      expect(user.charity_id).to eq(1)
     end
   end
 
