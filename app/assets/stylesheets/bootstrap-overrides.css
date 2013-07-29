@@ -29,10 +29,10 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
-#img-circle{
+
+#img-circle { 
 
 }
-
 
 .hello{
   margin-left: 1%;
@@ -42,8 +42,33 @@ body {
   text-align: center;
 }
 
-
 p {
   text-align: justify;
 }
+
+#main_content { padding-top: 70px; }
+
+/* Chart Section */
+
+#chart_area {
+  font: 10px sans-serif;
+  width: 100%;
+  height: 500px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: blue;
+}
+
+.x.axis path {
+  display: none;
+}
+
 
