@@ -25,9 +25,9 @@
     <div class="row" id="row"> 
      <h2 class="center-align">Our Charities</h2>
       <% @charities.each do |charity| %>
-      <div class="span4">
+      <div class="span4 center-align">
           <%= image_tag(charity.image) %>
-          <p class="charity"><%= charity.activities %></p>
+          <p class="copy-padding"><%= charity.activities %></p>
           <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
       </div>
       <% end %>
@@ -37,17 +37,17 @@
         <div class="span4 center-align">
       <h3>Mario Rossi</h3>
       <%= image_tag('talent-a.jpg', :class => "img-circle") %>
-      <p>When I realised how much time I was spending on Facebook, I wanted to see if there was a way I could use it to do some good. Givr has provided a simple and effective way to help others, whilst indulging my social needs.</p>
+      <p class="copy-padding">When I realised how much time I was spending on Facebook, I wanted to see if there was a way I could use it to do some good. Givr has provided a simple and effective way to help others, whilst indulging my social needs.</p>
     </div>
     <div class="span4 center-align">
       <h3>John Baily</h3>
        <%= image_tag('talent-b.jpg', :class => "img-circle") %>
-      <p>I wanted to monitor how much time I was spending on Facebook, so I could cut back to a reasonable amount. The concise data visualisation that Givr provides has been a brillaint tool for this.</p>
+      <p class="copy-padding">I wanted to monitor how much time I was spending on Facebook, so I could cut back to a reasonable amount. The concise data visualisation that Givr provides has been a brillaint tool for this.</p>
     </div>
     <div class="span4 center-align">
       <h3>Sally Turman</h3>
       <%= image_tag('talent-c.jpg', :class => "img-circle") %>
-      <p>I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
+      <p class="copy-padding">I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
     </div>
     </div>
     <div class="row center-align">

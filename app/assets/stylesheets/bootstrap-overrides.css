@@ -11,7 +11,6 @@
   }
 }
 
-
 body {
   background: black url(background_logo-1a.jpg) no-repeat fixed center top;
   background-size : fill;
@@ -77,6 +76,11 @@ img {
   border-radius: 12px;
 }
 
+.copy-padding {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
 /* Chart Section */
 
 #chart_area {
@@ -105,5 +109,3 @@ img {
 .x.axis path {
   display: none;
 }
-
-
