@@ -6,20 +6,17 @@
       <div class="thumbnail">
         <%= image_tag(charity.image) %>
         <div class="caption">
-          <% if @user.charity.name == charity.name %>
-            <% button = "Selected" %>
-            <% button_class = "danger" %>
-          <% else %>  
-            <% button = "Select" %>
-            <% button_class = "primary" %>
-          <% end %>
           <h5><%= charity.name %></h5>
           <p>Registration number: <%= charity.registered_number %></p>
           <p><%= charity.activities %></p>
           <p><%= link_to charity.url %>
           <%= form_tag(user_path(@user), :method => :put) do %>
           <%= hidden_field_tag :charity_id, charity.id %>
-          <%= submit_tag button, {:class => "btn btn-#{button_class} charity-btn"} %>
+          <% if @user.charity_id && @user.charity.name == charity.name%>
+            <%= submit_tag "Selected", {:class => "btn btn-danger"} %>
+          <% else %>
+            <%= submit_tag "Select", {:class => "btn btn-primary"} %>
+          <% end %>
           <% end %>
         </div>
       </div>

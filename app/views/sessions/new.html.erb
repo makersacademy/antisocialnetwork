@@ -27,7 +27,7 @@
    <h1 class="center-align"> Our Charities</h1>
     <% @charities.each do |charity| %>
     <div class="span4">
-      <h3 ><%= charity.name :class=> "center-align"%></h3>
+      <h3 ><%= charity.name %></h3>
         <%= image_tag(charity.image) %>
         <p><%= charity.activities %></p>
         <p class="center-align"><%= link_to charity.url %></p>
