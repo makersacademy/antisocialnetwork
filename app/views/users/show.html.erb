@@ -2,37 +2,38 @@
 
 <div id="main_content" class="container">
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Facebook Activity Trend</h3>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Facebook Activity Trend</h3>
+    </div>
+    <%= render "activities/activity_trends" %>
   </div>
-  <%= render "activities/activity_trends" %>
-</div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Facebook Activity Breakdown</h3>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Facebook Activity Breakdown</h3>
+    </div>
+    <%= render "activities/activity_breakdowns" %>
   </div>
-  <%= render "activities/activity_breakdowns" %>
-</div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Available Charities</h3>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Available Charities</h3>
+    </div>
+    <%= render "users/charity_selector" %>
   </div>
-  <%= render "users/charity_selector" %>
-</div>
-
-<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#card-details-pane">
-  Set up donations
-</button>
-<div id="card-details-pane" class="panel panel-primary collapse in">
-  <div class="panel-heading">
-    <h3 class="panel-title">Donation Payments</h3>
+  
+  <br/>
+  
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#card-details-pane">
+    Set up donations
+  </button>
+  <div id="card-details-pane" class="panel panel-primary collapse in">
+    <div class="panel-heading">
+      <h3 class="panel-title">Donation Payments</h3>
+    </div>
+    <%= render "users/card_details_form" %>
   </div>
-  <%= render "users/card_details_form" %>
-</div>
-<br/>
 </div>
 <br/>
 <br/>
