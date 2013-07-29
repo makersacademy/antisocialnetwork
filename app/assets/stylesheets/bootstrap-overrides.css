@@ -1,0 +1,77 @@
+@media(min-width: 980px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+@media(max-width: 767px) {
+  body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+body {
+  background: black url(background_logo-1a.jpg) no-repeat fixed center top;
+  background-size : fill;
+  background-attachment: fixed;
+  /*background-size:1280px;*/
+}
+
+#container{
+  width : 100%;
+  background : #f1f1f1;
+  margin-top : 330px;
+  z-index : 100%;
+  padding-top: 40px;
+  top : 330px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hello{
+  margin-left: 1%;
+}
+
+.center-align {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
+
+#main_content { 
+  padding-top: 70px; 
+}
+
+.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Chart Section */
+
+#chart_area {
+  font: 10px sans-serif;
+  width: 100%;
+  height: 500px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: blue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+

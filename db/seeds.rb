@@ -32,3 +32,4 @@ Charity.create( name: "Barnardo's",
                               health, and advancing their education.",
                 image: "charity-logo-spam4-C.jpg",
                 url: "www.barnardos.org.uk/")
+
