@@ -1,4 +1,17 @@
 $('document').ready(function(){
+  d3.json("/data.json", function(error, data) {
+    displayChart(error, data);
+    $(window).on("resize", function() {      
+      $('#chart_area').empty();            
+      displayChart(error, data);
+    });
+  });
+});
+
+function displayChart(error, data) {
+
+  // deep copy of the array of objects
+  var data = $.map(data, function(e, i) { return $.extend(true, {}, e) });
   
   var margin = {top: 40, right: 40, bottom: 60, left: 60};
   var width = $('#chart_area').width() - margin.left - margin.right;
@@ -111,8 +124,8 @@ $('document').ready(function(){
         .style("text-anchor", "end")
         .text(function(d) { return d; });
 
-  }
+  }  
 
-  d3.json("/data.json", draw);
+  draw(error, data);
 
-});
+}
