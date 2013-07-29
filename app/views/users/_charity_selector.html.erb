@@ -12,7 +12,7 @@
           <p><%= link_to charity.url %>
           <%= form_tag(user_path(@user), :method => :put) do %>
           <%= hidden_field_tag :charity_id, charity.id %>
-          <% if @user.charity_id && @user.charity.name == charity.name%>
+          <% if @user.charity_id && @user.charity.name == charity.name %>
             <%= submit_tag "Selected", {:class => "btn btn-danger"} %>
           <% else %>
             <%= submit_tag "Select", {:class => "btn btn-primary"} %>
