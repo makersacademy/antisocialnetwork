@@ -1,7 +1,7 @@
 @media(min-width: 980px) {
   body {
-    padding-top: 60px;
-  } 
+    padding-top: 70px;
+  }
 }
 
 @media(max-width: 767px) {
@@ -13,8 +13,10 @@
 
 
 body {
-  background: black url(banner2.jpg) no-repeat fixed center top;
+  background: black url(background_logo-1a.jpg) no-repeat fixed center top;
+  background-size : fill;
   background-attachment: fixed;
+  background-size:1280px;
 }
 
 #container{
@@ -23,7 +25,14 @@ body {
   margin-top : 330px;
   z-index : 100%;
   padding-top: 40px;
+  top : 330px;
+  padding-left: 0;
+  padding-right: 0;
 }
+#img-circle{
+
+}
+
 
 .hello{
   margin-left: 1%;
@@ -32,6 +41,7 @@ body {
 .center-align {
   text-align: center;
 }
+
 
 p {
   text-align: justify;

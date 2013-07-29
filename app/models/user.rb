@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :payments
   has_many :activities
+  belongs_to :charity
 
 	def self.create_with_omniauth(auth)
 		create! do |user|

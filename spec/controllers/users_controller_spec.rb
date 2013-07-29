@@ -2,14 +2,6 @@ require 'spec_helper'
 
 describe UsersController do
 
-  describe "GET 'index'" do
-    it "renders a list of users" do
-      pending "requirement to show users is not yet established"
-      get 'index'
-      response.should be_success
-    end
-  end
-
   describe "GET 'show'" do
     it "renders the user show page" do
       user = FactoryGirl.create(:user)
@@ -28,12 +20,16 @@ describe UsersController do
        user.reload
        expect(user.stripe_customer_id).to eq('12345')
     end
+
+    it "should update the charity" do
+      pending "SPEC NEEDS WRITING"
+    end
   end
 
   describe "DELETE 'destroy'" do
     it "redirects to index" do
       delete 'destroy', :id => 1
-      response.should redirect_to 'index'
+      response.should redirect_to :root
     end
 
     it "deletes the user from the database" do

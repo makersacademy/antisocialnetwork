@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="container">
   <div class="container" >
     <div class="row" id="row">
@@ -51,5 +52,65 @@
     <div class="row center-align" id="row">
       <button class="btn"><%= link_to "Sign up with Facebook", "/auth/facebook" %></button>
     </div>
+=======
+<div class="container-fluid" id="container">
+  <div class="row" id="row">
+  	<div class="span7">
+      <%= image_tag('box-n.jpg') %>
+    </div>
+    <div class="span5">
+      <h1>How does it works ?</h1>
+      <br>
+        <ul>
+          <li>
+            <h4>Connect with Facebook and start monitoring your profile.</h4>
+          </li>
+          <li>
+            <h4>Select a charity and contribute based on your social activity.</h4>
+          </li>
+          <li>
+            <h4>Monitor your donations and see how your contributes are improving other people’s life.</h4>
+          </li>
+        </ul>
+      <br>
+        <div class="center-align">
+          <%= link_to "Sign up with Facebook", "/auth/facebook", class: "btn btn-primary btn-large btn-block" %>
+        </div>
+    </div>
+  </div>
+  <div class="row" id="row">
+   <h1 class="center-align"> Our Charities</h1>
+    <% @charities.each do |charity| %>
+    <div class="span4">
+      <h3 ><%= charity.name %></h3>
+        <%= image_tag(charity.image) %>
+        <p><%= charity.activities %></p>
+        <p class="center-align"><%= link_to charity.url %></p>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row" id="row">
+    <h2 class="center-align">What people are saying about Givr</h2>
+    <div class="span4 center-align">
+      <h3>Mario Rossi</h3>
+      <%= image_tag('talent-a.jpg', :class => "img-circle") %>
+      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    </div>
+    <div class="span4 center-align">
+      <h3>John Baily</h3>
+       <%= image_tag('talent-b.jpg', :class => "img-circle") %>
+      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    </div>
+    <div class="span4 center-align">
+      <h3>Sally Turman</h3>
+      <%= image_tag('talent-c.jpg', :class => "img-circle") %>
+      <p>Cras dictum. Maecenas ut turpis. In vitae erat ac orci dignissim eleifend. Nunc quis justo. Sed vel ipsum in purus tincidunt pharetra. Sed pulvinar, felis id consectetuer malesuada, enim nisl mattis elit, a facilisis tortor nibh quis leo. Sed augue lacus, pretium vitae, molestie eget, rhoncus quis, elit. Donec in augue. Fusce orci wisi, ornare id, mollis vel, lacinia vel, massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    </div>
+  </div>
+
+  <div class="row center-align" id="row">
+    <%= link_to "Sign up with Facebook", "/auth/facebook", :class=> "btn btn-primary btn-large" %>
+>>>>>>> 5e2669e71d59d3f2d2b9be1566beb485f527609a
   </div>
 </div>
