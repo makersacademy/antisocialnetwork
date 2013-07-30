@@ -23,11 +23,11 @@
       </div>  
     </div>
     <div class="row" id="row"> 
-     <h2 class="center-align">Our Charities</h2>
+     <h2 class="center-align">Be Social For Charity</h2>
       <% @charities.each do |charity| %>
       <div class="span4 center-align">
           <%= image_tag(charity.image) %>
-          <p class="copy-padding"><%= charity.activities %></p>
+          <p class="copy-padding charity-home"><%= charity.activities %></p>
           <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
       </div>
       <% end %>

@@ -1,3 +1,33 @@
+@media(min-width: 1200px) {
+  .charity-home {
+  height: 110px;
+  }
+
+  .charity-dash {
+    height: 120px;
+  }
+}
+
+@media(max-width: 1199px) and (min-width: 980px){
+  .charity-home {
+  height: 140px;
+  }
+  
+  .charity-dash {
+  height: 160px;
+  }
+}
+
+@media(max-width: 979px) and (min-width: 768px){
+  .charity-home {
+  height: 200px;
+  }
+  
+  .charity-dash {
+  height: 220px;
+  }
+}
+
 @media(min-width: 980px) {
   body {
     padding-top: 70px;
@@ -16,6 +46,7 @@ body {
   background-size : fill;
   background-attachment: fixed;
   /*background-size:1280px;*/
+  font-family: futura;
 }
 
 #container{
@@ -54,6 +85,10 @@ p {
   color: #0367A6;
 }
 
+h5 {
+  height: 40px;
+}
+
 #main_content { 
   padding-top: 70px; 
 }
@@ -79,6 +114,10 @@ img {
 .copy-padding {
   padding-left: 2%;
   padding-right: 2%;
+}
+
+.thumbnail {
+  border: 1px solid #0367A6;
 }
 
 /* Chart Section */
