@@ -1,10 +1,10 @@
 <div class="well">
   <%= form_tag(user_path(@user), :method => :put, :id => "payment_form") do %>
-      <% if @user.stripe_customer_id %>
-        <legend>Edit Card Details</legend>
-      <% else %>
-        <legend>Edit Card Details</legend>
-      <% end %> 
+    <% if @user.stripe_customer_id %>
+      <legend>Edit Card Details</legend>
+    <% else %>
+      <legend>Edit Card Details</legend>
+    <% end %> 
     <fieldset>
       <%= hidden_field_tag :stripe_card_token %>
       <div id="stripe_error"></div>
@@ -32,5 +32,5 @@
         <p>Want to stop giving? <%= link_to "Click here", user_path(@user, :unsubscribe => true), :method => :put %></p>
       <% end %>  
     </fieldset>
-<% end %>
+  <% end %>
 </div>

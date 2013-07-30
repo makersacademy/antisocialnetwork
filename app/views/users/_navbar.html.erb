@@ -5,7 +5,7 @@
   <h1 class="navbar-brand pull-left">Givr</h1>
   <ul class="nav navbar-nav pull-right">
     <li class="navbar-text">Signed in as <%= current_user.name %></li>
-    <li><%= button_to "Sign Out", signout_path, class: "btn btn-primary navbar-btn pull-right" %></button></li>
+    <li><button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to "Sign Out", signout_path %></button></li>
   </ul>
   </div>
 </div>
