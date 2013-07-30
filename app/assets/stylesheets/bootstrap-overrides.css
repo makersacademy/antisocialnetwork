@@ -41,8 +41,20 @@
   }
 }
 
+@media(min-width: 768px) {
+  .wide-row {
+    margin-left: -1000px;
+    margin-right: -1000px;
+    padding-left: 1000px;
+    padding-right: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+}
+
 body {
-  background: #ffffff;
+  background-image: url('/assets/cream_pixels.png');
   font-family: futura;
   letter-spacing:1px;
   padding-top: 0px;
@@ -58,6 +70,7 @@ body {
   background: -ms-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* IE10+ */
   background: linear-gradient(to bottom, #22698f 0%,#00a7ff 99%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22698f', endColorstr='#00a7ff',GradientType=0 ); /* IE6-9 */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
   padding-top: 30px;
   padding-bottom: 20px;
 }
@@ -113,8 +126,13 @@ h5 {
   margin-bottom: 20px;
 }
 
-.sign-up {
-  margin-top: 20px;
+.wide-row {
+  background-color: rgba(34,105,143,0.1);
+  box-shadow: 0 0 10px 3px rgba(0,0,0,0.1);
+}
+
+.sign-in {
+  margin-bottom: 30px;
 }
 
 .btn-primary {
