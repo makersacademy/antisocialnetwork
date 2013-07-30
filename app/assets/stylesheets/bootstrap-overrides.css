@@ -43,10 +43,10 @@
 
 @media(min-width: 768px) {
   .wide-row {
-    margin-left: -55px;
-    margin-right: -55px;
-    padding-left: 55px;
-    padding-right: 55px;
+    margin-left: -1000px;
+    margin-right: -1000px;
+    padding-left: 1000px;
+    padding-right: 1000px;
   }
 
 }
