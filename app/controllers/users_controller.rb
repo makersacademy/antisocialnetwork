@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     update_card(user, params[:stripe_card_token]) if params[:stripe_card_token]
     update_charity(user, params[:charity_id]) if params[:charity_id]
+    unsubscribe(user) if params[:unsubscribe]
     redirect_to user_path(user)
   end
 
@@ -37,4 +38,9 @@ private
     user.charity_id = charity_id
     flash[:notice] = "Something went wrong! Please select your charity again!" unless user.save
   end
+
+  def unsubscribe(user)
+    user.stripe_customer_id = nil
+    flash[:notice] = user.save ? "You have stopped giving to these worthy charities. You bastard!" : "Something went wrong! Please try again!"
+  end  
 end
