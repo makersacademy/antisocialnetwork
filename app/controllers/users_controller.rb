@@ -22,16 +22,20 @@ class UsersController < ApplicationController
 private
 
   def update_card(user, card_token) 
-    if user.stripe_customer_id
-      cu = Stripe::Customer.retrieve(user.stripe_customer_id)
-      cu.description = "Updated user card"
-      cu.card = card_token
-      flash[:notice] = cu.save ? "Your card has been updated!" : "Something went wrong! Please try again!"
-    else 
-      customer = Stripe::Customer.create(:description => "New customer", :card => card_token)
-      user.stripe_customer_id = customer.id 
-      flash[:notice] = user.save ? "Thank-you! Your donations will begin shortly!" : "Something went wrong! Please try again!"
-    end
+    begin
+      if user.stripe_customer_id
+        cu = Stripe::Customer.retrieve(user.stripe_customer_id)
+        cu.description = "Updated user card"
+        cu.card = card_token
+        flash[:notice] = cu.save ? "Your card has been updated!" : "Something went wrong! Please try again!"
+      else 
+        customer = Stripe::Customer.create(:description => "New customer", :card => card_token)
+        user.stripe_customer_id = customer.id 
+        flash[:notice] = user.save ? "Thank-you! Your donations will begin shortly!" : "Something went wrong! Please try again!"
+      end
+    rescue
+      flash[:notice] = "Something went wrong! Please try again!"
+    end  
   end 
 
   def update_charity(user, charity_id)

@@ -41,6 +41,17 @@
     </div>
     <%= render "users/card_details_form" %>
   </div>
+
+
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#donation-details-pane">
+    Donation History
+  </button>
+  <div id="donation-details-pane" class="panel panel-primary collapse in">
+    <div class="panel-heading">
+      <h3 class="panel-title">Donation History</h3>
+    </div>
+    <%= render "users/donation_history" %>
+  </div>
 </div>
 <br/>
 <br/>

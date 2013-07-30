@@ -29,7 +29,10 @@ class Payment < ActiveRecord::Base
     users.each do |user|
       unless user.activities.count == 0
         activity = self.calculate_activity(user)
-        self.make_payment(self.calculate_amount(activity), user)
+        begin
+          self.make_payment(self.calculate_amount(activity), user)
+        rescue
+        end  
       end  
     end 
   end   
