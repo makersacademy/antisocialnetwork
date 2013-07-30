@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :activity do
+    user_id 1
     uid "MyString"
     activity_id "MyString"
     activity_description "MyString"

@@ -11,12 +11,10 @@ describe ActivitiesController do
     end
   end
 
-  describe "GET 'index'" do
+  describe "GET 'index.json'" do
     it "returns http success" do
-      pending "implementation not yet clear"
-      get 'index'
-      response.should render_template "activities/_user_activities"
-      response.should be_success
+      get 'index', :format => :json
+      false
     end
   end
 

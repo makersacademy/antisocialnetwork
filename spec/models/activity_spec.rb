@@ -97,4 +97,41 @@ describe Activity do
 
   end
 
+  describe "METHOD 'in_range_counted_by_day_and_description'" do
+    it "should return an array of results scoped to a particular user and date range" do
+      user1activity1 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-24 12:13:14")
+      user1activity2 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add album",
+        :activity_updated_time => "2013-07-25 12:13:14")
+      user1activity3 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-30 12:13:14")
+      user1activity4 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-20 12:13:14")
+      user2activity1 = FactoryGirl.create(
+        :activity, :user_id => user2.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-24 12:13:14")
+
+      Activity.count.should == 5
+
+      expected_result = [ 
+        {"date"=>"2013-07-25", "status_update"=>"0", "add_or_modify_photo"=>"0", "add_album"=>"1", "add_or_modify_event"=>"0", "checkin"=>"0", "add_link"=>"0", "upload_video"=>"0"},
+        {"date"=>"2013-07-24", "status_update"=>"0", "add_or_modify_photo"=>"0", "add_album"=>"0", "add_or_modify_event"=>"0", "checkin"=>"0", "add_link"=>"1", "upload_video"=>"0"}]
+
+      start_date = Time.new(2013,07,23).beginning_of_day
+      end_date = Time.new(2013,07,26).beginning_of_day
+      puts "Activity.all.to_a.inspect #{Activity.all.to_a.inspect}"
+      puts "Activity.count #{Activity.count}"
+      expect(Activity.in_range_counted_by_day_and_description(user1, start_date, end_date).to_a).to eql expected_result
+    end
+  end
+
 end
