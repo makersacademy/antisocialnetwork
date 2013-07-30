@@ -2,6 +2,10 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
 
+  # scope :recent, where(:created_at >=, 7.days.ago )
+  # date = DateTime.now.beginning_of_day
+  #   user.activities.where(:created_at => date - 7.days..date).count
+
   # Hash constant that maps the activity field names recognized by this app to the facebook column names
   # { [facebook table name] => {
   #   :uid => [facebook column name for uid], 
@@ -65,8 +69,17 @@ class Activity < ActiveRecord::Base
     end
   end
 
-private
+  def self.in_range_for_user_counted_by_day_and_description(user=nil, start_date=7.days.ago.beginning_of_day, end_date=Time.now.beginning_of_day)
+    start_date = start_date.strftime("%Y-%m-%d")
+    end_date = end_date.strftime("%Y-%m-%d")
+    sql = "SELECT activity_updated_time::timestamp::date AS date, COUNT(CASE WHEN activity_description = 'status update' THEN 1 ELSE NULL END) AS status_update, COUNT(CASE WHEN activity_description = 'add or modify photo' THEN 1 ELSE NULL END) AS add_or_modify_photo, COUNT(CASE WHEN activity_description = 'add album' THEN 1 ELSE NULL END) AS add_album, COUNT(CASE WHEN activity_description = 'add or modify event' THEN 1 ELSE NULL END) AS add_or_modify_event, COUNT(CASE WHEN activity_description = 'checkin' THEN 1 ELSE NULL END) AS checkin, COUNT(CASE WHEN activity_description = 'add link' THEN 1 ELSE NULL END) AS add_link, COUNT(CASE WHEN activity_description = 'upload video' THEN 1 ELSE NULL END) AS upload_video FROM activities WHERE user_id = #{ActiveRecord::Base.sanitize(user.id)} AND activity_updated_time::timestamp::date >= #{ActiveRecord::Base.sanitize(start_date)} AND activity_updated_time::timestamp::date <= #{ActiveRecord::Base.sanitize(end_date)} GROUP BY date"
+    puts sql
+    ActiveRecord::Base.connection.execute(sql)
+  end
 
+
+private
+  
 
   def self.activities_for_user(user, time_span)
     Activity::FACEBOOK_TABLES.map do |table_name, fields|
