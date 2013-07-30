@@ -1,57 +1,73 @@
 <div id="container">
+
+  <header class="header-bg">
+        <h1 class="center-align header-home">Givr<h1>
+        <h2 class="center-align header-home">the social way to help</h2>
+        
+  </header> 
+
   <div class="container" >
-    <div class="row" id="row">
-      <div class="span7">  
-        <%= link_to image_tag('box.jpg') %>
-      </div>
-      <div class="span5">
-        <h2 class="center-align">Welcome to Givr!</h2>
-        <ol>
-          <li>
-            <h4>Connect with Facebook and start monitoring your profile.</h4>
-          </li>
-          <li>
-            <h4>Select a charity and contribute based on your social activity.</h4>
-          </li>
-          <li>
-            <h4>Monitor your donations and see how your contributions are improving other people’s lives.</h4>
-          </li>
-        </ol>
-        <div class="center-align">
-          <%= link_to "Sign up with Facebook", "/auth/facebook", class: "btn btn-primary btn-large sign-up" %>
-        </div>
-      </div>  
-    </div>
-    <div class="row" id="row"> 
-     <h2 class="center-align">Our Charities</h2>
-      <% @charities.each do |charity| %>
+
+   
+
+    <div class="row">
       <div class="span4 center-align">
-          <%= image_tag(charity.image) %>
-          <p class="copy-padding"><%= charity.activities %></p>
-          <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
+        <%= image_tag('step-connect-blue.png') %>
+        <h3>CONNECT</h3>
+        <p class="copy-padding center-align">Sign in to Givr with Facebook to begin monitoring your social activity such as status updates, photo uploads and comments.</p>
       </div>
-      <% end %>
+      <div class="span4 center-align"> 
+        <%= image_tag('step-heart-blue.png') %>
+        <h3>DONATE</h3>
+        <p class="copy-padding center-align">Choose your preferred charity from our selection, provide your payment details and begin donating based on your social activity.</p>
+      </div>
+      <div class="span4 center-align">
+        <%= image_tag('step-result-blue.png') %>
+        <h3>TRACK</h3>
+        <p class="copy-padding center-align">Monitor your donations over time, view your donation history and see how your contributions are changing people's lives.</p>
+      </div>
+    </div>  
+    
+    <div class="center-align">
+          <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-warning btn-large sign-up" %>
+    </div>  
+    
+    <div class='wide-row'>
+      <h2 class="center-align">Be Social For Charity</h2>
+      <div class="row">               
+        <% @charities.each do |charity| %>
+          <div class="span4 center-align">
+              <%= image_tag(charity.image)%>
+              <p class="copy-padding charity-home"><%= charity.activities %></p>
+              <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
+          </div>
+        <% end %>  
+      </div>
     </div>
-    <div class="row" id="row">
+
+    <div class="row">
       <h2 class="center-align">What people are saying about Givr</h2>
-        <div class="span4 center-align">
-      <h3>Mario Rossi</h3>
-      <%= image_tag('talent-a.jpg', :class => "img-circle") %>
-      <p class="copy-padding">When I realised how much time I was spending on Facebook, I wanted to see if there was a way I could use it to do some good. Givr has provided a simple and effective way to help others, whilst indulging my social needs.</p>
+      <div class="span4 center-align">
+        <h3>Mario Rossi</h3>
+        <%= image_tag('talent-a.jpg', :class => "img-circle") %>
+        <p class="copy-padding">When I realised how much time I was spending on Facebook, I wanted to see if there was a way I could use it to do some good. Givr has provided a simple and effective way to help others, whilst indulging my social needs.</p>
+      </div>
+      <div class="span4 center-align">
+        <h3>John Baily</h3>
+         <%= image_tag('talent-b.jpg', :class => "img-circle") %>
+        <p class="copy-padding">I wanted to monitor how much time I was spending on Facebook, so I could cut back to a reasonable amount. The concise data visualisation that Givr provides has been a brilliant tool for this.</p>
+      </div>
+      <div class="span4 center-align">
+        <h3>Sally Turman</h3>
+        <%= image_tag('talent-c.jpg', :class => "img-circle") %>
+        <p class="copy-padding">I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
+      </div>
     </div>
-    <div class="span4 center-align">
-      <h3>John Baily</h3>
-       <%= image_tag('talent-b.jpg', :class => "img-circle") %>
-      <p class="copy-padding">I wanted to monitor how much time I was spending on Facebook, so I could cut back to a reasonable amount. The concise data visualisation that Givr provides has been a brilliant tool for this.</p>
-    </div>
-    <div class="span4 center-align">
-      <h3>Sally Turman</h3>
-      <%= image_tag('talent-c.jpg', :class => "img-circle") %>
-      <p class="copy-padding">I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
-    </div>
-    </div>
+    
     <div class="row center-align">
-    <%= link_to "Sign up with Facebook", "/auth/facebook", :class=> "btn btn-primary btn-large" %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", :class=> "btn btn-warning btn-large" %>
     </div>
+  
   </div>
+
 </div>

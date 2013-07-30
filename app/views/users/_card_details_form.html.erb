@@ -1,6 +1,10 @@
 <div class="well">
   <%= form_tag(user_path(@user), :method => :put, :id => "payment_form") do %>
-    <legend>Enter Card Details</legend>
+    <% if @user.stripe_customer_id %>
+      <legend>Edit Card Details</legend>
+    <% else %>
+      <legend>Edit Card Details</legend>
+    <% end %> 
     <fieldset>
       <%= hidden_field_tag :stripe_card_token %>
       <div id="stripe_error"></div>
@@ -18,8 +22,15 @@
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :class => "form-control"} %>
       </div>
       <div class="form-group">
-        <%= submit_tag "Begin Donating", {:class => "btn btn-danger"} %>
+      <% if @user.stripe_customer_id %>
+        <%= submit_tag "Update", {:class => "btn btn-danger"} %>
+      <% else %>
+        <%= submit_tag "Start  Donating", {:class => "btn btn-danger"} %>
+      <% end %> 
       </div>
+      <% if @user.stripe_customer_id %>
+        <p>Want to stop giving? <%= link_to "Click here", user_path(@user, :unsubscribe => true), :method => :put %></p>
+      <% end %>  
     </fieldset>
-<% end %>
+  <% end %>
 </div>

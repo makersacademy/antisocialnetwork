@@ -1,3 +1,33 @@
+@media(min-width: 1200px) {
+  .charity-home {
+  height: 160px;
+  }
+
+  .charity-dash {
+    height: 120px;
+  }
+}
+
+@media(max-width: 1199px) and (min-width: 980px){
+  .charity-home {
+  height: 200px;
+  }
+  
+  .charity-dash {
+  height: 160px;
+  }
+}
+
+@media(max-width: 979px) and (min-width: 768px){
+  .charity-home {
+  height: 260px;
+  }
+  
+  .charity-dash {
+  height: 220px;
+  }
+}
+
 @media(min-width: 980px) {
   body {
     padding-top: 70px;
@@ -11,20 +41,45 @@
   }
 }
 
+@media(min-width: 768px) {
+  .wide-row {
+    margin-left: -1000px;
+    margin-right: -1000px;
+    padding-left: 1000px;
+    padding-right: 1000px;
+  }
+
+}
+
 body {
-  background: black url(background_logo-1a.jpg) no-repeat fixed center top;
-  background-size : fill;
-  background-attachment: fixed;
-  /*background-size:1280px;*/
+  background-image: url('/assets/cream_pixels.png');
+  font-family: futura;
+  letter-spacing:1px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.header-bg {
+  background: #22698f; /* Old browsers */
+  background: -moz-linear-gradient(top, #22698f 0%, #00a7ff 99%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#22698f), color-stop(99%,#00a7ff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* IE10+ */
+  background: linear-gradient(to bottom, #22698f 0%,#00a7ff 99%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22698f', endColorstr='#00a7ff',GradientType=0 ); /* IE6-9 */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.header-home {
+  color: #ffffff;
 }
 
 #container{
   width : 100%;
-  background : #f1f1f1;
-  margin-top : 330px;
-  z-index : 100%;
-  padding-top: 40px;
-  top : 330px;
+  padding-top: -30px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -37,21 +92,27 @@ body {
   text-align: center;
 }
 
+h1 {
+  font-size: 65pt;
+}
+
 h2 {
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #148DD9;
-}
-
-ol {
-  color: #0367A6;
+  /*color: #148DD9;*/
+  color: #8b95a0;
 }
 
 p {
   text-align: justify;
   padding-top: 10px;
   padding-bottom: 10px;
-  color: #0367A6;
+  color: #8b95a0;
+  font-size: 16px;
+}
+
+h5 {
+  height: 40px;
 }
 
 #main_content { 
@@ -61,6 +122,11 @@ p {
 .row {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.wide-row {
+  background-color: rgba(0,255,0,0.3);
+  box-shadow: 0 0 10px 3px rgba(0,0,0,0.1);
 }
 
 .sign-up {
@@ -79,6 +145,10 @@ img {
 .copy-padding {
   padding-left: 2%;
   padding-right: 2%;
+}
+
+.thumbnail {
+  border: 1px solid #0367A6;
 }
 
 /* Chart Section */
