@@ -163,3 +163,30 @@ img {
 .x.axis path {
   display: none;
 }
+
+.header-dash {
+  background: #22698f; /* Old browsers */
+  background: -moz-linear-gradient(top, #22698f 0%, #00a7ff 99%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#22698f), color-stop(99%,#00a7ff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #22698f 0%,#00a7ff 99%); /* IE10+ */
+  background: linear-gradient(to bottom, #22698f 0%,#00a7ff 99%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22698f', endColorstr='#00a7ff',GradientType=0 ); /* IE6-9 */
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.navbar-text {
+  padding-right: 10px;
+  color: #ffffff !important;
+}
+
+.title-dash {
+  color: #ffffff;
+  padding-top: 10px;
+}
+
+.panel-title {
+  padding-top: 50px;
+}
