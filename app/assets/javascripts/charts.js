@@ -1,9 +1,13 @@
 $('document').ready(function(){
-  d3.json("/data.json", function(error, data) {
-    displayChart(error, data);
-    $(window).on("resize", function() {      
-      $('#chart_area').empty();            
+  $('#loading_modal').modal('show');
+  $.post('/activities', function(data){
+    $('#loading_modal').modal('hide');
+    d3.json("/activities.json", function(error, data) {
       displayChart(error, data);
+      $(window).on("resize", function() {      
+        $('#chart_area').empty();            
+        displayChart(error, data);
+      });
     });
   });
 });
@@ -48,7 +52,7 @@ function displayChart(error, data) {
     // get the categories and add to the color domain
     color.domain(
       d3.keys(data[0]).filter(
-      function(key) { return key !== "day"; }
+      function(key) { return key !== "date"; }
     ));
 
     data.forEach(function(d) {
@@ -59,13 +63,13 @@ function displayChart(error, data) {
 
     // sort function to sort the x-values in date order
     data.sort(function(a, b) { 
-      var d1 = new Date(a.day);
-      var d2 = new Date(b.day);
+      var d1 = new Date(a.date);
+      var d2 = new Date(b.date);
       return d1 - d2; 
     });
 
     // get the x-values
-    x.domain(data.map(function(d) { return d.day; }));
+    x.domain(data.map(function(d) { return d.date; }));
 
     // calculate the range of possible y-values
     y.domain([0, d3.max(data, function(d) { return d.total * 1.5; })]);
@@ -88,11 +92,11 @@ function displayChart(error, data) {
         .text("Facebook activity");
 
 
-    var column = svg.selectAll(".day")
+    var column = svg.selectAll(".date")
         .data(data)
       .enter().append("g")
         .attr("class", "g")
-        .attr("transform", function(d) { return "translate(" + x(d.day) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; });
 
     column.selectAll("rect")
         .data(function(d) { return d.categories; })
@@ -105,7 +109,7 @@ function displayChart(error, data) {
     // transition animation
     column.selectAll("rect")
       .transition()
-      .delay(function(d, i){ return i / data.length * 3000 })
+      .delay(function(d, i){ return i / data.length * 1000 })
       .attr("height", function(d) { return y(d.y0) - y(d.y1); })
       .attr("y", function(d) { return y(d.y1); })
 

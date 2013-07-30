@@ -98,7 +98,7 @@ describe Activity do
   end
 
   describe "METHOD 'in_range_counted_by_day_and_description'" do
-    it "should return an array of results scoped to a particular user and date range" do
+    before(:each) do
       user1activity1 = FactoryGirl.create(
         :activity, :user_id => user1.id,
         :activity_description => "add link",
@@ -119,7 +119,9 @@ describe Activity do
         :activity, :user_id => user2.id,
         :activity_description => "add link",
         :activity_updated_time => "2013-07-24 12:13:14")
+    end
 
+    it "should return an array of results scoped to a particular user and date range" do
       Activity.count.should == 5
 
       expected_result = [ 
@@ -130,7 +132,7 @@ describe Activity do
       end_date = Time.new(2013,07,26).beginning_of_day
       puts "Activity.all.to_a.inspect #{Activity.all.to_a.inspect}"
       puts "Activity.count #{Activity.count}"
-      expect(Activity.in_range_counted_by_day_and_description(user1, start_date, end_date).to_a).to eql expected_result
+      expect(Activity.in_range_for_user_counted_by_day_and_description(user1, start_date, end_date).to_a).to eql expected_result
     end
   end
 

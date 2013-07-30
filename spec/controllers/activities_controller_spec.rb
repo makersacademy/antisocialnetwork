@@ -12,9 +12,34 @@ describe ActivitiesController do
   end
 
   describe "GET 'index.json'" do
+    let(:user1) { FactoryGirl.create(:user, :uid => "100006352424167") }
+    let(:user2) { FactoryGirl.create(:user, :uid => "100006352424168") }
+    before(:each) do
+      session[:user_id] = user1.id
+      user1activity1 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-24 12:13:14")
+      user1activity2 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add album",
+        :activity_updated_time => "2013-07-25 12:13:14")
+      user1activity3 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-30 12:13:14")
+      user1activity4 = FactoryGirl.create(
+        :activity, :user_id => user1.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-20 12:13:14")
+      user2activity1 = FactoryGirl.create(
+        :activity, :user_id => user2.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-24 12:13:14")
+    end
+
     it "returns http success" do
       get 'index', :format => :json
-      false
     end
   end
 
