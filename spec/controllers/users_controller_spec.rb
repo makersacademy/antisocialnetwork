@@ -45,6 +45,14 @@ describe UsersController do
       user.reload
       expect(user.charity_id).to eq(1)
     end
+
+    it "should delete the users stripe customer id" do
+      user = FactoryGirl.create(:user)
+      put :update, :id => user.id, :unsubscribe => true
+      response.should redirect_to user_path(user)
+      user.reload
+      expect(user.stripe_customer_id).to be_nil
+    end
   end
 
   describe "DELETE 'destroy'" do
