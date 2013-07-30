@@ -68,7 +68,7 @@ function displayChart(error, data) {
     x.domain(data.map(function(d) { return d.day; }));
 
     // calculate the range of possible y-values
-    y.domain([0, d3.max(data, function(d) { return d.total; })]);
+    y.domain([0, d3.max(data, function(d) { return d.total * 1.5; })]);
 
     // add the x-axis and position it
     svg.append("g")
