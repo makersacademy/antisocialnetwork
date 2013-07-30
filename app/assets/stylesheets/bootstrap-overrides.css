@@ -4,7 +4,7 @@
   }
 
   .charity-dash {
-    height: 120px;
+    height: 160px;
   }
 }
 
@@ -14,7 +14,7 @@
   }
   
   .charity-dash {
-  height: 160px;
+  height: 200px;
   }
 }
 
@@ -24,7 +24,7 @@
   }
   
   .charity-dash {
-  height: 220px;
+  height: 280px;
   }
 }
 
@@ -203,8 +203,4 @@ img {
 .title-dash {
   color: #ffffff;
   padding-top: 10px;
-}
-
-.panel-title {
-  padding-top: 50px;
 }
