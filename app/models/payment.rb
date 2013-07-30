@@ -27,7 +27,7 @@ class Payment < ActiveRecord::Base
   def self.charge_all_users
     users = User.where.not(stripe_customer_id: 'nil')
     users.each do |user|
-      unless user.activities.count == 0
+      unless self.calculate_activity(user) == 0
         activity = self.calculate_activity(user)
         begin
           self.make_payment(self.calculate_amount(activity), user)
