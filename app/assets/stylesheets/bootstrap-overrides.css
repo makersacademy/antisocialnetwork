@@ -41,6 +41,16 @@
   }
 }
 
+@media(min-width: 768px) {
+  .wide-row {
+    margin-left: -55px;
+    margin-right: -55px;
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+}
+
 body {
   background-image: url('/assets/cream_pixels.png');
   font-family: futura;
@@ -112,6 +122,11 @@ h5 {
 .row {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.wide-row {
+  background-color: rgba(0,255,0,0.3);
+  box-shadow: 0 0 10px 3px rgba(0,0,0,0.1);
 }
 
 .sign-up {
