@@ -1,4 +1,4 @@
-<legend>Select your charity</legend>
+<!--<legend>Select your charity</legend>-->
  
 <div class="row">
   <% @charities.each do |charity| %>
@@ -8,8 +8,8 @@
         <div class="caption">
           <h5><%= charity.name %></h5>
           <p>Registration number: <%= charity.registered_number %></p>
-          <p><%= charity.activities %></p>
-          <p><%= link_to charity.url %>
+          <p class="charity-dash"><%= charity.activities %></p>
+          <p><%= link_to charity.url %></p>
           <%= form_tag(user_path(@user), :method => :put) do %>
           <%= hidden_field_tag :charity_id, charity.id %>
           <% if @user.charity_id && @user.charity.name == charity.name %>

@@ -13,35 +13,27 @@
     <% else %>
       <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right" %>   
     <% end %>  
-    
+    <h3>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %>
   </div>
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Facebook Activity Breakdown</h3>
-    </div>
-    <%= render "activities/activity_breakdowns" %>
-  </div>
-
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Available Charities</h3>
+      <h3 class="panel-title">Select Your Charity</h3>
     </div>
     <%= render "users/charity_selector" %>
   </div>
   
-  <br/>
   
   <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#card-details-pane">
-    Set up donations
+    Set up Payment
   </button>
+  
   <div id="card-details-pane" class="panel panel-primary collapse in">
     <div class="panel-heading">
       <h3 class="panel-title">Donation Payments</h3>
     </div>
     <%= render "users/card_details_form" %>
   </div>
-
 
   <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#donation-details-pane">
     Donation History
@@ -53,6 +45,5 @@
     <%= render "users/donation_history" %>
   </div>
 </div>
-<br/>
-<br/>
+
 <%= render "users/loading_data" %>
