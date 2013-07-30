@@ -9,6 +9,9 @@
     <%= render "activities/activity_trends" %>
     <% if @user.stripe_customer_id %>
       <p>Running total of activities since join or last donation <%= number_to_currency(recent_activity_cost(@user), :unit => "£") %>
+      <p>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %>
+    <% else %>
+      <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right" %>   
     <% end %>  
     <h3>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %>
   </div>
