@@ -68,7 +68,7 @@ function displayChart(error, data) {
     x.domain(data.map(function(d) { return d.day; }));
 
     // calculate the range of possible y-values
-    y.domain([0, d3.max(data, function(d) { return d.total; })]);
+    y.domain([0, d3.max(data, function(d) { return d.total * 1.5; })]);
 
     // add the x-axis and position it
     svg.append("g")
@@ -98,9 +98,16 @@ function displayChart(error, data) {
         .data(function(d) { return d.categories; })
       .enter().append("rect")
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.y1); })
-        .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+        .attr("y", 0)
+        .attr("height", 0)
         .style("fill", function(d) { return color(d.name); });
+
+    // transition animation
+    column.selectAll("rect")
+      .transition()
+      .delay(function(d, i){ return i / data.length * 3000 })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .attr("y", function(d) { return y(d.y1); })
 
     // create the legend
     var legend = svg.selectAll(".legend")

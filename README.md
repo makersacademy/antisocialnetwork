@@ -17,10 +17,3 @@ The application assumes that Stripe payment keys are stored in the following env
 
 Tests (Specs) can be run with the `rspec` command or `rake spec` (and its derivatives).
 
-
-* Configuration
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
