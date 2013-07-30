@@ -1,6 +1,6 @@
 @media(min-width: 1200px) {
   .charity-home {
-  height: 110px;
+  height: 160px;
   }
 
   .charity-dash {
@@ -10,7 +10,7 @@
 
 @media(max-width: 1199px) and (min-width: 980px){
   .charity-home {
-  height: 140px;
+  height: 200px;
   }
   
   .charity-dash {
@@ -20,7 +20,7 @@
 
 @media(max-width: 979px) and (min-width: 768px){
   .charity-home {
-  height: 200px;
+  height: 260px;
   }
   
   .charity-dash {
