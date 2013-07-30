@@ -98,9 +98,16 @@ function displayChart(error, data) {
         .data(function(d) { return d.categories; })
       .enter().append("rect")
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.y1); })
-        .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+        .attr("y", 0)
+        .attr("height", 0)
         .style("fill", function(d) { return color(d.name); });
+
+    // transition animation
+    column.selectAll("rect")
+      .transition()
+      .delay(function(d, i){ return i / data.length * 3000 })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .attr("y", function(d) { return y(d.y1); })
 
     // create the legend
     var legend = svg.selectAll(".legend")
