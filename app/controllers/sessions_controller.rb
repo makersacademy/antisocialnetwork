@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
     else
       user = User.create_with_omniauth(auth)
       session[:user_id] = user.id
-      session[:new_user] = true
       redirect_to user_path(user)
     end
   end

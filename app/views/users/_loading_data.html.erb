@@ -1,16 +1,12 @@
-<% if session[:new_user]  %>
-  <% session[:new_user] = nil %>
-  <div id="loading_data_modal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h4>Loading data from Facebook...</h4>
-          <div class="text-center">
-            <%= image_tag("ajax-loader.gif") %>
-          </div>
+<div id="loading_modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4>Loading Facebook data...</h4>
+        <div class="text-center">
+          <%= image_tag("ajax-loader.gif") %>
         </div>
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="loading_data.js"></script>
-<% end %>
+</div>
