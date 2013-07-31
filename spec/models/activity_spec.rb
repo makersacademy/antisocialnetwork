@@ -125,15 +125,112 @@ describe Activity do
       Activity.count.should == 5
 
       expected_result = [ 
-        {"date"=>"2013-07-25", "status_update"=>"0", "add_or_modify_photo"=>"0", "add_album"=>"1", "add_or_modify_event"=>"0", "checkin"=>"0", "add_link"=>"0", "upload_video"=>"0"},
-        {"date"=>"2013-07-24", "status_update"=>"0", "add_or_modify_photo"=>"0", "add_album"=>"0", "add_or_modify_event"=>"0", "checkin"=>"0", "add_link"=>"1", "upload_video"=>"0"}]
+        {"date"=>"2013-07-23", "status update"=>"0", "add album"=>"0",  "upload video"=>"0", "checkin"=>"0", "modify event"=>"0", "add photo"=>"0", "add link"=>"0"},
+        {"date"=>"2013-07-24", "status update"=>"0", "add album"=>"0",  "upload video"=>"0", "checkin"=>"0", "modify event"=>"0", "add photo"=>"0", "add link"=>"1"},
+        {"date"=>"2013-07-25", "status update"=>"0", "add album"=>"1", "upload video"=>"0", "checkin"=>"0", "modify event"=>"0", "add photo"=>"0", "add link"=>"0"},
+        {"date"=>"2013-07-26", "status update"=>"0", "add album"=>"0",  "upload video"=>"0", "checkin"=>"0", "modify event"=>"0", "add photo"=>"0", "add link"=>"0"},
+        ]
 
       start_date = Time.new(2013,07,23).beginning_of_day
       end_date = Time.new(2013,07,26).beginning_of_day
-      puts "Activity.all.to_a.inspect #{Activity.all.to_a.inspect}"
-      puts "Activity.count #{Activity.count}"
       expect(Activity.in_range_for_user_counted_by_day_and_description(user1, start_date, end_date).to_a).to eql expected_result
     end
   end
+
+  # describe "METHOD stringify_hash_keys" do
+  #   let(:raw_input){[{:key_1 => "value"},{:key_2 => "value2"}]}
+    
+  #   it "should convert all keys in the hash elements to strings" do
+  #     result = Activity.stringify_hash_keys(raw_input)
+  #     result.each do |h|
+  #       h.each_key do |k|
+  #         k.should be_a String
+  #       end
+  #     end
+  #   end
+
+  # end
+
+  # describe "METHOD add_missing_dates" do
+  #   let(:dates){ ['2013-07-01','2013-07-02','2013-07-03'] }
+  #   it "should return an array of hashes for a full date range" do
+  #     input_array = []
+  #     expected_result = [
+  #         {'date' => '2013-07-01', 
+  #         'status_update' => '0',
+  #         'add_album' => '0',
+  #         'upload_video' => '0',
+  #         'checkin' => '0',
+  #         'modify_event' => '0',
+  #         'add_photo' => '0',
+  #         'add_link' => '0'
+  #         },
+  #         {'date' => '2013-07-02', 
+  #         'status_update' => '0',
+  #         'add_album' => '0',
+  #         'upload_video' => '0',
+  #         'checkin' => '0',
+  #         'modify_event' => '0',
+  #         'add_photo' => '0',
+  #         'add_link' => '0'
+  #         },
+  #         {'date' => '2013-07-03', 
+  #         'status_update' => '0',
+  #         'add_album' => '0',
+  #         'upload_video' => '0',
+  #         'checkin' => '0',
+  #         'modify_event' => '0',
+  #         'add_photo' => '0',
+  #         'add_link' => '0'
+  #         }]
+  #     actual_result = Activity.add_missing_dates(input_array, dates.first, dates.last)
+  #     actual_result.should eql expected_result
+  #   end
+
+  #   it "should should include any input data for dates in the range" do
+  #     dates = ['2013-07-01','2013-07-02','2013-07-03']
+  #     input_array = [
+  #         {'date' => '2013-07-02', 
+  #         'status_update' => '1',
+  #         'add_album' => '2',
+  #         'upload_video' => '3',
+  #         'checkin' => '4',
+  #         'modify_event' => '5',
+  #         'add_photo' => '6',
+  #         'add_link' => '7'
+  #         }]
+  #     expected_result = [
+  #         {'date' => '2013-07-01', 
+  #         'status_update' => '0',
+  #         'add_album' => '0',
+  #         'upload_video' => '0',
+  #         'checkin' => '0',
+  #         'modify_event' => '0',
+  #         'add_photo' => '0',
+  #         'add_link' => '0'
+  #         },
+  #         {'date' => '2013-07-02', 
+  #         'status_update' => '1',
+  #         'add_album' => '2',
+  #         'upload_video' => '3',
+  #         'checkin' => '4',
+  #         'modify_event' => '5',
+  #         'add_photo' => '6',
+  #         'add_link' => '7'
+  #         },
+  #         {'date' => '2013-07-03', 
+  #         'status_update' => '0',
+  #         'add_album' => '0',
+  #         'upload_video' => '0',
+  #         'checkin' => '0',
+  #         'modify_event' => '0',
+  #         'add_photo' => '0',
+  #         'add_link' => '0'
+  #         }]
+  #     actual_result = Activity.add_missing_dates(input_array, dates.first, dates.last)
+  #     actual_result.should eql expected_result
+  #   end
+
+  # end
 
 end
