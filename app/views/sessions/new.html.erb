@@ -1,6 +1,6 @@
 <header class="header-bg">
       <h1 class="center-align header-home">Givr<h1>
-      <h2 class="center-align header-home">guilt free social networking</h2>
+      <h2 class="center-align header-home">guilt-free social networking</h2>
 </header> 
 
 
@@ -38,13 +38,13 @@
 
 <div class='section charities'>
   <div class='container'>
-    <div class="row">
-      <h2 class="center-align">Be social for charity</h2>
+    <h2 class="center-align">Be social for charity</h2>
+      <div class="row">
       <% @charities.each do |charity| %>
         <div class="span4 center-align">
           <%= image_tag(charity.image) %>
           <p class="copy-padding charity-home"><%= charity.activities %></p>
-          <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
+          <!-- <%= link_to charity.name, charity.url, class: "btn btn-success btn-large center-align" %> -->
         </div>
       <% end %>  
     </div>
