@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
-  def unsubscribe_user
+  def unsubscribe
     user = User.find(params[:id])
     user.stripe_customer_id = nil
     flash[:notice] = user.save ? "Your donations have been stopped" : "Something went wrong! Please try again!"
