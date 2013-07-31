@@ -79,6 +79,7 @@ class Activity < ActiveRecord::Base
     stringify_hash_keys(add_missing_dates(result.to_a, start_date, end_date))
   end
 
+
 private
 
   # expects a data structure of the format

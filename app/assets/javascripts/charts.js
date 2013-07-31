@@ -61,15 +61,19 @@ function displayChart(error, data) {
       d.total = d.categories[d.categories.length - 1].y1;
     });
 
-    // sort function to sort the x-values in date order
-    data.sort(function(a, b) { 
-      var d1 = new Date(a.date);
-      var d2 = new Date(b.date);
-      return d1 - d2; 
-    });
+    // // sort function to sort the x-values in date order
+    // data.sort(function(a, b) { 
+    //   var d1 = new Date(a.date);
+    //   var d2 = new Date(b.date);
+    //   return d1 - d2; 
+    // });
 
     // get the x-values
-    x.domain(data.map(function(d) { return d.date; }));
+    x.domain(data.map(function(d) {
+      date_object = new Date(d.date)
+      weekdays = ["sun","mon","tue","wed","thu","fri","sat"]
+      return weekdays[date_object.getDay()]; 
+    }));
 
     // calculate the range of possible y-values
     y.domain([0, d3.max(data, function(d) { return d.total * 1.5; })]);
