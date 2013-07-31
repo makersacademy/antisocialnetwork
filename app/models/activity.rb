@@ -99,7 +99,6 @@ private
     snake.to_s.gsub(/_/, ' ') || snake.to_s
   end
 
-
   def self.add_missing_dates(input_array, start_date, end_date)
     empty_data_structures = empty_results_for_range(start_date, end_date)
     empty_data_structures.map do |hash1|
@@ -122,7 +121,6 @@ private
       }
     end
   end
-  
 
   def self.activities_for_user(user, time_span)
     Activity::FACEBOOK_TABLES.map do |table_name, fields|
