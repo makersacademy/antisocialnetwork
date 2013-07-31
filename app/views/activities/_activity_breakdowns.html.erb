@@ -1,4 +1,20 @@
 <div class="well">
-  <legend>Activity details</legend>
+  <legend>
+    <span>This donation period </legend>
+  <ul class="nav">
+    
+    <% current_user.activity_in_this_payment_cycle.each do |activity, count| %>
+    
+    <li class="active">
+      <span>
+        <%= activity.pluralize(count) %>
+      </span>
+      <span class="badge pull-right">
+        <%= count %>
+      </span>
+    </li>
+    
+    <% end %>
 
+  </ul>
 </div>
