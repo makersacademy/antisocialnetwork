@@ -1,14 +1,13 @@
-<div id="container">
 
-  <header class="header-bg">
-        <h1 class="center-align header-home">Givr<h1>
-        <h2 class="center-align header-home">the social way to help</h2>
-  </header> 
+<header class="header-bg">
+  <h1 class="center-align header-home">Givr<h1>
+  <h2 class="center-align header-home">the social way to help</h2>
+</header> 
 
+
+<div class="section">
   <div class="container" >
-
     <div class="row">
-
       <div class="span4 center-align">
         <%= image_tag('step-connect-blue.png') %>
         <h3>CONNECT</h3>
@@ -24,27 +23,39 @@
         <h3>TRACK</h3>
         <p class="copy-padding center-align">Monitor your donations over time, view your donation history and see how your contributions are changing people's lives.</p>
       </div>
-    </div>  
-    
-    <div class="center-align">
-          <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-warning btn-large sign-in" %>
-    </div>  
-    
-    <div class='wide-row'>
-      <h2 class="center-align">Be Social For Charity</h2>
-      <div class="row">               
-        <% @charities.each do |charity| %>
-          <div class="span4 center-align">
-              <%= image_tag(charity.image)%>
-              <p class="copy-padding charity-home"><%= charity.activities %></p>
-              <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
-          </div>
-        <% end %>  
-      </div>
     </div>
+  </div>  
+</div>
 
+<div class="section">
+  <div class='container'>
     <div class="row">
-      <h2 class="center-align">What people are saying about Givr</h2>
+      <div class="center-align span12">
+        <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-warning btn-large sign-in" %>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div class='section charities'>
+  <div class='container'>
+    <div class="row">
+      <h2 class="center-align">Be Social For Charity</h2>
+      <% @charities.each do |charity| %>
+        <div class="span4 center-align">
+          <%= image_tag(charity.image) %>
+          <p class="copy-padding charity-home"><%= charity.activities %></p>
+          <p class="center-align"><%= link_to charity.name, charity.url, class: "btn btn-success btn-large" %></p>
+        </div>
+      <% end %>  
+    </div>
+  </div>
+ </div>
+
+<div class="section">
+  <div class='container'>
+    <h2 class="center-align">What people are saying about Givr</h2>
+    <div class="row">
       <div class="span4 center-align">
         <h3>Mario Rossi</h3>
         <%= image_tag('talent-a.jpg', :class => "img-circle") %>
@@ -61,11 +72,11 @@
         <p class="copy-padding">I love Facebook. I love giving to charity. I love how Givr has combined these and taken the guilt out of spending time on Facebook. I couldn't think of an easier way to give to charity.</p>
       </div>
     </div>
-    
-    <div class="row center-align">
-    <%= link_to "Sign in with Facebook", "/auth/facebook", :class=> "btn btn-warning btn-large sign-in" %>
-    </div>
-  
   </div>
+</div>
+  
+<div class="row center-align">
+  <%= link_to "Sign in with Facebook", "/auth/facebook", :class=> "btn btn-warning btn-large sign-in" %>
+</div>
 
 </div>
