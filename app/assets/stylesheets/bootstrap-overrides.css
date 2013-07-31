@@ -153,17 +153,24 @@ img {
   border: 1px solid #0367A6;
 }
 
-/* Chart Section */
+/*########### Chart Section start*/
 
 #chart_area {
-  font: 10px sans-serif;
+  font: 1em sans-serif;
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
 @media (max-width: 767px) { 
   #chart_area {
     height: 250px;
+    font:0.8em sans-serif;
+  }
+}
+
+@media (max-width: 500px) { 
+  .x.axis > .tick.major {
+    font-size: 0.8em;
   }
 }
 
@@ -177,10 +184,10 @@ img {
 .bar {
   fill: blue;
 }
-
 .x.axis path {
-  display: none;
 }
+/* ##########Chart Section end*/
+
 
 .header-dash {
   background: #22698f; /* Old browsers */
