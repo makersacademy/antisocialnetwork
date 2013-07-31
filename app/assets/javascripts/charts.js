@@ -17,7 +17,7 @@ function displayChart(error, data) {
   // deep copy of the array of objects
   var data = $.map(data, function(e, i) { return $.extend(true, {}, e) });
   
-  var margin = {top: 40, right: 40, bottom: 60, left: 60};
+  var margin = {top: 40, right: 100, bottom: 40, left: 60};
   var width = $('#chart_area').width() - margin.left - margin.right;
   var height = $('#chart_area').height() - margin.top - margin.bottom;
 
@@ -118,7 +118,7 @@ function displayChart(error, data) {
         .data(color.domain().slice().reverse())
       .enter().append("g")
         .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+        .attr("transform", function(d, i) { return "translate(100," + i * 20 + ")"; });
 
     // add a box to show the color of the corresponding box
     legend.append("rect")
