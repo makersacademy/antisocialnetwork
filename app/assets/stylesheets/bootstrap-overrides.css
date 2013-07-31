@@ -79,13 +79,6 @@ body {
   color: #ffffff;
 }
 
-#container{
-  width : 100%;
-  padding-top: -30px;
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .hello{
   margin-left: 1%;
 }
@@ -126,7 +119,7 @@ h5 {
   margin-bottom: 20px;
 }
 
-.wide-row {
+.section.charities {
   background-color: rgba(34,105,143,0.1);
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.1);
 }
