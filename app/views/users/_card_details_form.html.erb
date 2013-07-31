@@ -29,7 +29,7 @@
       <% end %> 
       </div>
       <% if @user.stripe_customer_id %>
-        <p>Want to stop giving? <%= link_to "Click here", user_path(@user, :unsubscribe => true), :method => :put %></p>
+        <p>Want to stop giving? <%= link_to "Click here", unsubscribe_path(@user), :method => :post %></p>
       <% end %>  
     </fieldset>
   <% end %>
