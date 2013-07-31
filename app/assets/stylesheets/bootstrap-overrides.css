@@ -1,6 +1,6 @@
 @media(min-width: 1200px) {
   .charity-home {
-  height: 160px;
+  height: 170px;
   }
 
   .charity-dash {
@@ -25,6 +25,10 @@
   
   .charity-dash {
   height: 280px;
+  }
+
+  .charity-button{
+    margin-bottom: 20px;
   }
 }
 
@@ -92,8 +96,8 @@ h1 {
 }
 
 h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   /*color: #148DD9;*/
   color: #8b95a0;
 }
@@ -115,8 +119,8 @@ h5 {
 }
 
 .row {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .section.charities {
@@ -125,7 +129,7 @@ h5 {
 }
 
 .sign-in {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .btn-primary {
