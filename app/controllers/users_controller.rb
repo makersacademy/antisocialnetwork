@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def unsubscribe_user
+    user = User.find(params[:id])
+    user.stripe_customer_id = nil
+    flash[:notice] = user.save ? "Your donations have been stopped" : "Something went wrong! Please try again!"
+    redirect_to user_path(user)
+  end  
+
   def destroy
     redirect_to root_path
   end
@@ -43,8 +50,4 @@ private
     flash[:notice] = "Something went wrong! Please select your charity again!" unless user.save
   end
 
-  def unsubscribe(user)
-    user.stripe_customer_id = nil
-    flash[:notice] = user.save ? "You have stopped giving to these worthy charities. You bastard!" : "Something went wrong! Please try again!"
-  end  
 end

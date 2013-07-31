@@ -12,7 +12,7 @@
         <tr>  
           <td><%= payment.created_at.strftime("%d %b %Y") %></td>  
           <td><%= payment.charity %></td>  
-          <td><%= number_to_currency(payment.bill_amount / 100, :unit => "£") %></td>  
+          <td><%= number_to_currency(payment.bill_amount / 100.00, :unit => "£") %></td>  
         </tr>  
       <% end %> 
     </tbody>  

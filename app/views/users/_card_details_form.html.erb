@@ -3,7 +3,7 @@
     <% if @user.stripe_customer_id %>
       <legend>Edit Card Details</legend>
     <% else %>
-      <legend>Edit Card Details</legend>
+      <legend>Enter Card Details</legend>
     <% end %> 
     <fieldset>
       <%= hidden_field_tag :stripe_card_token %>
@@ -25,11 +25,11 @@
       <% if @user.stripe_customer_id %>
         <%= submit_tag "Update", {:class => "btn btn-danger"} %>
       <% else %>
-        <%= submit_tag "Start  Donating", {:class => "btn btn-danger"} %>
+        <%= submit_tag "Start Donating", {:class => "btn btn-danger"} %>
       <% end %> 
       </div>
       <% if @user.stripe_customer_id %>
-        <p>Want to stop giving? <%= link_to "Click here", user_path(@user, :unsubscribe => true), :method => :put %></p>
+        <p>Want to stop giving? <%= link_to "Click here", unsubscribe_path(@user), :method => :post %></p>
       <% end %>  
     </fieldset>
   <% end %>
