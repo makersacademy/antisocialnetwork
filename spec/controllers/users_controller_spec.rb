@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe UsersController do
 
@@ -22,18 +22,6 @@ describe UsersController do
         expect(user.stripe_customer_id).to eq('12345')
       end
     end
-<<<<<<< HEAD
-
-    it "should update the charity" do
-      pending "SPEC NEEDS WRITING"
-    end
-  end
-
-  describe "DELETE 'destroy'" do
-    it "redirects to index" do
-      delete 'destroy', :id => 1
-      response.should redirect_to :root
-=======
 
     context "when user updating their card details" do
       it "should not update the customer id" do
@@ -48,7 +36,7 @@ describe UsersController do
         user.reload
         expect(user.stripe_customer_id).to eq('scid 453443')
       end
->>>>>>> c83d81432ea87038de7f188a663082e7ff83d6bb
+
     end
 
     it "should update the charity" do
@@ -68,7 +56,7 @@ describe UsersController do
       user.reload
       expect(user.stripe_customer_id).to be_nil
     end
-  end  
+  end
 
 
 end

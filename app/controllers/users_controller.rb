@@ -45,6 +45,7 @@ private
     end
   end
 
+
   def update_charity(user, charity_id)
     user.charity_id = charity_id
     flash[:notice] = "Something went wrong! Please select your charity again!" unless user.save
