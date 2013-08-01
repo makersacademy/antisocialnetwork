@@ -1,15 +1,9 @@
 module ApplicationHelper
 
   def recent_activity_cost(user, amount=50)
-    if user.payments.length > 0
-      payment = user.payments.last.created_at
-      activity = user.activities.where(:activity_updated_time => payment..DateTime.now).count
-      activity * amount / 100.00
-    else
-      join_date = user.created_at
-      activity = user.activities.where(:activity_updated_time => join_date..DateTime.now).count
-      activity * amount / 100.00
-    end
+    period = users_current_payment_period(user)
+    activity = user.activities.where(:activity_updated_time => period).count
+    activity * amount / 100.00
   end  
 
   def total_donations(user)

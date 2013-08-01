@@ -13,8 +13,6 @@ describe ApplicationHelper do
     context "when a new user hasn't made a payment" do
       it "returns the period since joining" do
         joined_date = 2.day.ago
-        the_user.stub_chain("payments.last.created_at").and_return(joined_date)
-        the_user.stub_chain("payments.length").and_return(0)
         the_user.stub(:created_at).and_return(joined_date)
         Time.stub(:now).and_return(Date.today)
         expected_date_range = joined_date..Time.now
@@ -22,7 +20,7 @@ describe ApplicationHelper do
       end
     end
 
-    context "when a signed up user has made a payment" do
+    context "when a user has made a payment" do
       it "returns the period since the last payment" do
         date_of_last_payment = 3.day.ago
         the_user.stub_chain("payments.last.created_at").and_return(date_of_last_payment)
@@ -34,4 +32,45 @@ describe ApplicationHelper do
     end
 
   end
+
+  describe "METHOD recent_activity_cost" do
+
+    before(:each) do
+      session[:user_id] = the_user.id
+      activity1 = FactoryGirl.create(
+        :activity, :user_id => the_user.id,
+        :activity_description => "add link",
+        :activity_updated_time => 3.days.ago)
+      activity2 = FactoryGirl.create(
+        :activity, :user_id => the_user.id,
+        :activity_description => "add album",
+        :activity_updated_time => 3.days.ago)
+      activity3 = FactoryGirl.create(
+        :activity, :user_id => the_user.id,
+        :activity_description => "add link",
+        :activity_updated_time => 1.day.ago)
+    end
+
+    context "when a new user hasn't made a payment" do
+      it "should charge the customer from the date they joined" do
+        joined_date = 2.day.ago
+        the_user.stub(:created_at).and_return(joined_date)
+        the_user.stub_chain("payments.length").and_return(0)
+        app_helper.recent_activity_cost(the_user, 50).should == 1 * 50 / 100.00
+      end
+    end
+
+    context "when a user has made a payment" do
+      it "should charge them from the date of the last payment" do
+        date_of_last_payment = 4.day.ago
+        joined_date = 2.day.ago
+        the_user.stub_chain("payments.last.created_at").and_return(date_of_last_payment)
+        the_user.stub(:created_at).and_return(joined_date)
+        the_user.stub_chain("payments.length").and_return(1)
+        app_helper.recent_activity_cost(the_user, 50).should == 3 * 50 / 100.00
+      end 
+    end
+
+  end
+
 end
