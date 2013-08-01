@@ -34,20 +34,13 @@ private
         cu = Stripe::Customer.retrieve(user.stripe_customer_id)
         cu.description = "Updated user card"
         cu.card = card_token
-<<<<<<< HEAD
         user.last_four_digits_of_credit_card = cu.cards.data.first["last4"]
         flash[:notice] = cu.save && user.save ? "Your card has been updated!" : "Something went wrong! Please try again!"
       else 
         cu = Stripe::Customer.create(:description => "New customer", :card => card_token)
         user.stripe_customer_id = cu.id 
         user.last_four_digits_of_credit_card = cu.cards.data.first["last4"]
-=======
         flash[:notice] = cu.save ? "Your card has been updated!" : "Something went wrong! Please try again!"
-      else
-        customer = Stripe::Customer.create(:description => "New customer", :card => card_token)
-        user.stripe_customer_id = customer.id
->>>>>>> e59eff654963cb5f6453abd4a146422487a0cf9d
-        flash[:notice] = user.save ? "Thank-you! Your donations will begin shortly!" : "Something went wrong! Please try again!"
       end
     rescue
       flash[:notice] = "Something went wrong! Please try again!"
