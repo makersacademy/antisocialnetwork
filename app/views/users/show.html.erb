@@ -25,7 +25,7 @@
         <legend>Running total of activities since join or last donation <%= number_to_currency(recent_activity_cost(@user), :unit => "£") %></legend>
         <legend>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %></legend>
       <% else %>
-        <legend>Please Select a Charity and enter your payment details to begin donating.</legend>
+        <legend>Total donations to date: £0.00</legend>
       <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right donate-now" %>
       <% end %>  
     </div>
