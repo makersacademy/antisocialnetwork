@@ -1,11 +1,6 @@
 class Payment < ActiveRecord::Base
   belongs_to :user
 
-  def self.calculate_activity(user)
-    date = DateTime.now.beginning_of_day
-    user.activities.where(:activity_updated_time => date - 7.days..date).count
-  end
-
   def self.users_current_payment_period(user)
     if user.payments.length > 0
       user.payments.last.created_at..Time.now
@@ -14,8 +9,14 @@ class Payment < ActiveRecord::Base
     end
   end
 
-  def self.calculate_amount(user_activity, amount=50)
-    user_activity * amount
+  def self.calculate_activity(user)
+    date = DateTime.now.beginning_of_day
+    user.activities.where(:activity_updated_time => users_current_payment_period(user)).count
+  end
+
+
+  def self.calculate_amount(activity_count, amount=50)
+    activity_count * amount
   end  
 
   def self.create_bill_amount(user, amount)
@@ -36,9 +37,9 @@ class Payment < ActiveRecord::Base
     users = User.where.not(stripe_customer_id: 'nil')
     users.each do |user|
       unless self.calculate_activity(user) == 0
-        activity = self.calculate_activity(user)
+        activity_count = self.calculate_activity(user)
         begin
-          self.make_payment(self.calculate_amount(activity), user)
+          self.make_payment(self.calculate_amount(activity_count), user)
         rescue
         end  
       end  
