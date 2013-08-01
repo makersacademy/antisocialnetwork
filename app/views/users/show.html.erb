@@ -1,6 +1,6 @@
 <%= render "users/navbar" %>
 
-<div id="main_content" class="container copy-padding">
+<div id="main_content" class="container">
 
   <% flash.each do |name, msg| %>
     <div class="alert alert-success">
@@ -11,9 +11,16 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Recent Facebook Activity</h3>
+      <h3 class="panel-title">Facebook Activity Trend</h3>
     </div>
     <%= render "activities/activity_trends" %>
+    <% if @user.stripe_customer_id %>
+      <p>Running total of activities since join or last donation <%= number_to_currency(recent_activity_cost(@user), :unit => "£") %>
+      <p>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %>
+    <% else %>
+      <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right" %>   
+    <% end %>  
+    <h3>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %>
   </div>
 
   <div class="panel panel-primary">
@@ -59,7 +66,7 @@
     <%= render "users/card_details_form" %>
   </div>
 
-  <button type="button" class="btn btn-primary don-hist" data-toggle="collapse" data-target="#donation-details-pane">
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#donation-details-pane">
     Donation History
   </button>
   <div id="donation-details-pane" class="panel panel-primary collapse in">
@@ -71,4 +78,3 @@
 </div>
 
 <%= render "users/loading_data" %>
-

@@ -3,7 +3,7 @@ class Payment < ActiveRecord::Base
 
   def self.calculate_activity(user)
     date = DateTime.now.beginning_of_day
-    user.activities.where(:created_at => date - 7.days..date).count
+    user.activities.where(:activity_updated_time => date - 7.days..date).count
   end  
 
   def self.calculate_amount(user_activity, amount=50)
