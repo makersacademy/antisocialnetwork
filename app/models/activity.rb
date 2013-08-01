@@ -86,7 +86,7 @@ class Activity < ActiveRecord::Base
             FROM activities 
             WHERE user_id = #{ActiveRecord::Base.sanitize(user.id)} 
             AND activity_updated_time::timestamp::date >= #{ActiveRecord::Base.sanitize(start_date)} 
-            AND activity_updated_time::timestamp::date <= #{ActiveRecord::Base.sanitize(end_date)} 
+            AND activity_updated_time::timestamp::date < #{ActiveRecord::Base.sanitize(end_date)} 
             GROUP BY date"
     result = ActiveRecord::Base.connection.execute(sql)
     stringify_hash_keys(add_missing_dates(result.to_a, start_date, end_date))
