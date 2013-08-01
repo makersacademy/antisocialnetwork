@@ -40,7 +40,7 @@ private
         cu = Stripe::Customer.create(:description => "New customer", :card => card_token)
         user.stripe_customer_id = cu.id 
         user.last_four_digits_of_credit_card = cu.cards.data.first["last4"]
-        flash[:notice] = cu.save ? "Your card has been updated!" : "Something went wrong! Please try again!"
+        flash[:notice] = user.save ? "Your card has been added!" : "Something went wrong! Please try again!"
       end
     rescue
       flash[:notice] = "Something went wrong! Please try again!"
