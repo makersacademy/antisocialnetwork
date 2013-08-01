@@ -15,7 +15,7 @@ describe UsersController do
     context "when user adding their card details for the first time" do
       it "should add the stripe customer id to database" do
         user = FactoryGirl.create(:user, stripe_customer_id: nil)
-        Stripe::Customer.should_receive(:create).and_return(double(:id => '12345'))
+        Stripe::Customer.should_receive(:create).and_return(double(:id => '12345', :cards => double(:data => [{"last4" => 1234}])))
         put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
         response.should redirect_to user_path(user)
         user.reload
@@ -26,9 +26,9 @@ describe UsersController do
     context "when user updating their card details" do
       it "should not update the customer id" do
         user = FactoryGirl.create(:user)
-        stripe_customer = double("Stripe_Customer")
+        stripe_customer = double("Stripe_Customer", :cards => double(:data => [{"last4" => 1234}]))
         stripe_customer.should_receive(:description=).with("Updated user card").at_least(:once)
-        stripe_customer.should_receive(:card=).at_least(:once)
+        stripe_customer.should_receive(:card=).at_least(:once)        
         stripe_customer.should_receive(:save)
         Stripe::Customer.should_receive(:retrieve).and_return(stripe_customer)
         put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
@@ -57,5 +57,16 @@ describe UsersController do
     end
   end  
 
+  describe "DELETE 'destroy'" do
+    it "redirects to index" do
+      delete 'destroy', :id => 1
+      response.should redirect_to :root
+    end
+
+    it "deletes the user from the database" do
+      pending "not clear at this point whether users should be deleted or just deactivated"
+      delete 'destroy', :id => 1
+    end
+  end
 
 end

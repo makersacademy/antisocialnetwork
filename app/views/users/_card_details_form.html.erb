@@ -2,6 +2,7 @@
   <%= form_tag(user_path(@user), :method => :put, :id => "payment_form") do %>
     <% if @user.stripe_customer_id %>
       <legend>Edit Card Details</legend>
+      <p>Using card ending with <%= @user.last_four_digits_of_credit_card %></p>
     <% else %>
       <legend>Enter Card Details</legend>
     <% end %> 
@@ -22,11 +23,11 @@
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :class => "form-control"} %>
       </div>
       <div class="form-group">
-      <% if @user.stripe_customer_id %>
-        <%= submit_tag "Update", {:class => "btn btn-danger"} %>
-      <% else %>
-        <%= submit_tag "Start Donating", {:class => "btn btn-danger"} %>
-      <% end %> 
+        <% if @user.stripe_customer_id %>
+          <%= submit_tag "Update", {:class => "btn btn-danger"} %>
+        <% else %>
+          <%= submit_tag "Start Donating", {:class => "btn btn-danger"} %>
+        <% end %> 
       </div>
       <% if @user.stripe_customer_id %>
         <p>Want to stop giving? <%= link_to "Click here", unsubscribe_path(@user), :method => :post %></p>

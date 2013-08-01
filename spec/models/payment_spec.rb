@@ -7,13 +7,13 @@ describe Payment do
     @user = FactoryGirl.create(:user, charity_id: @charity.id)
     activity1 = FactoryGirl.create(:activity, user_id: @user.id)
     activity2 = FactoryGirl.create(:activity, user_id: @user.id, 
-                                              created_at: DateTime.now - 4.days) 
+                                              activity_updated_time: DateTime.now - 4.days) 
   end  
 
   describe "charging a single user" do
     it "should only calculate the number of activities in the past seven days" do
-      activity2 = FactoryGirl.create(:activity, user_id: @user.id, 
-                                                created_at: DateTime.now - 8.days) 
+      activity3 = FactoryGirl.create(:activity, user_id: @user.id, 
+                                                activity_updated_time: DateTime.now - 8.days) 
       expect(Payment.calculate_activity(@user)).to eq(1)
     end  
 
