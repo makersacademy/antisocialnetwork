@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe UsersController do
 
@@ -36,6 +36,7 @@ describe UsersController do
         user.reload
         expect(user.stripe_customer_id).to eq('scid 453443')
       end
+
     end
 
     it "should update the charity" do
@@ -55,18 +56,7 @@ describe UsersController do
       user.reload
       expect(user.stripe_customer_id).to be_nil
     end
-  end  
-
-  describe "DELETE 'destroy'" do
-    it "redirects to index" do
-      delete 'destroy', :id => 1
-      response.should redirect_to :root
-    end
-
-    it "deletes the user from the database" do
-      pending "not clear at this point whether users should be deleted or just deactivated"
-      delete 'destroy', :id => 1
-    end
   end
+
 
 end

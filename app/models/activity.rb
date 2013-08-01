@@ -2,6 +2,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
 
+
   # scope :recent, where(:created_at >=, 7.days.ago )
   # date = DateTime.now.beginning_of_day
   #   user.activities.where(:created_at => date - 7.days..date).count
