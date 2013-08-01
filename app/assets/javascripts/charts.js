@@ -1,6 +1,23 @@
 $('document').ready(function(){
+  $('#loading_modal').modal('show');
+  $.post('/activities', function(data){
+    $('#loading_modal').modal('hide');
+    d3.json("/activities.json", function(error, data) {
+      displayChart(error, data);
+      $(window).on("resize", function() {      
+        $('#chart_area').empty();            
+        displayChart(error, data);
+      });
+    });
+  });
+});
+
+function displayChart(error, data) {
+
+  // deep copy of the array of objects
+  var data = $.map(data, function(e, i) { return $.extend(true, {}, e) });
   
-  var margin = {top: 40, right: 40, bottom: 60, left: 60};
+  var margin = {top: 40, right: 100, bottom: 40, left: 60};
   var width = $('#chart_area').width() - margin.left - margin.right;
   var height = $('#chart_area').height() - margin.top - margin.bottom;
 
@@ -35,7 +52,7 @@ $('document').ready(function(){
     // get the categories and add to the color domain
     color.domain(
       d3.keys(data[0]).filter(
-      function(key) { return key !== "day"; }
+      function(key) { return key !== "date"; }
     ));
 
     data.forEach(function(d) {
@@ -44,18 +61,22 @@ $('document').ready(function(){
       d.total = d.categories[d.categories.length - 1].y1;
     });
 
-    // sort function to sort the x-values in date order
-    data.sort(function(a, b) { 
-      var d1 = new Date(a.day);
-      var d2 = new Date(b.day);
-      return d1 - d2; 
-    });
+    // // sort function to sort the x-values in date order
+    // data.sort(function(a, b) { 
+    //   var d1 = new Date(a.date);
+    //   var d2 = new Date(b.date);
+    //   return d1 - d2; 
+    // });
 
     // get the x-values
-    x.domain(data.map(function(d) { return d.day; }));
+    x.domain(data.map(function(d) {
+      date_object = new Date(d.date)
+      weekdays = ["sun","mon","tue","wed","thu","fri","sat"]
+      return weekdays[date_object.getDay()]; 
+    }));
 
     // calculate the range of possible y-values
-    y.domain([0, d3.max(data, function(d) { return d.total; })]);
+    y.domain([0, d3.max(data, function(d) { return d.total * 1.5; })]);
 
     // add the x-axis and position it
     svg.append("g")
@@ -75,26 +96,33 @@ $('document').ready(function(){
         .text("Facebook activity");
 
 
-    var column = svg.selectAll(".day")
+    var column = svg.selectAll(".date")
         .data(data)
       .enter().append("g")
         .attr("class", "g")
-        .attr("transform", function(d) { return "translate(" + x(d.day) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; });
 
     column.selectAll("rect")
         .data(function(d) { return d.categories; })
       .enter().append("rect")
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.y1); })
-        .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+        .attr("y", 0)
+        .attr("height", 0)
         .style("fill", function(d) { return color(d.name); });
+
+    // transition animation
+    column.selectAll("rect")
+      .transition()
+      .delay(function(d, i){ return i / data.length * 1000 })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .attr("y", function(d) { return y(d.y1); })
 
     // create the legend
     var legend = svg.selectAll(".legend")
         .data(color.domain().slice().reverse())
       .enter().append("g")
         .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+        .attr("transform", function(d, i) { return "translate(100," + i * 20 + ")"; });
 
     // add a box to show the color of the corresponding box
     legend.append("rect")
@@ -111,8 +139,8 @@ $('document').ready(function(){
         .style("text-anchor", "end")
         .text(function(d) { return d; });
 
-  }
+  }  
 
-  d3.json("/data.json", draw);
+  draw(error, data);
 
-});
+}

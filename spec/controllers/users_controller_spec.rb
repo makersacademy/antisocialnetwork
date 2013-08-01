@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_helper' 
 
 describe UsersController do
 
@@ -12,14 +12,17 @@ describe UsersController do
   end
 
   describe "PUT 'update" do
-    it "should add the stripe customer id to database" do
-       user = FactoryGirl.create(:user)
-       Stripe::Customer.should_receive(:create).and_return(double(:id => '12345'))
-       put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
-       response.should redirect_to user_path(user)
-       user.reload
-       expect(user.stripe_customer_id).to eq('12345')
+    context "when user adding their card details for the first time" do
+      it "should add the stripe customer id to database" do
+        user = FactoryGirl.create(:user, stripe_customer_id: nil)
+        Stripe::Customer.should_receive(:create).and_return(double(:id => '12345'))
+        put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
+        response.should redirect_to user_path(user)
+        user.reload
+        expect(user.stripe_customer_id).to eq('12345')
+      end
     end
+<<<<<<< HEAD
 
     it "should update the charity" do
       pending "SPEC NEEDS WRITING"
@@ -30,12 +33,42 @@ describe UsersController do
     it "redirects to index" do
       delete 'destroy', :id => 1
       response.should redirect_to :root
+=======
+
+    context "when user updating their card details" do
+      it "should not update the customer id" do
+        user = FactoryGirl.create(:user)
+        stripe_customer = double("Stripe_Customer")
+        stripe_customer.should_receive(:description=).with("Updated user card").at_least(:once)
+        stripe_customer.should_receive(:card=).at_least(:once)
+        stripe_customer.should_receive(:save)
+        Stripe::Customer.should_receive(:retrieve).and_return(stripe_customer)
+        put :update, :id => user.id, :stripe_card_token => "tok_u5dg20Gra"
+        response.should redirect_to user_path(user)
+        user.reload
+        expect(user.stripe_customer_id).to eq('scid 453443')
+      end
+>>>>>>> c83d81432ea87038de7f188a663082e7ff83d6bb
     end
 
-    it "deletes the user from the database" do
-      pending "not clear at this point whether users should be deleted or just deactivated"
-      delete 'destroy', :id => 1
+    it "should update the charity" do
+      user = FactoryGirl.create(:user)
+      put :update, :id => user.id, :charity_id => 1
+      response.should redirect_to user_path(user)
+      user.reload
+      expect(user.charity_id).to eq(1)
     end
   end
+
+  describe "POST 'unsubscribe'" do
+    it "should delete the users stripe customer id" do
+      user = FactoryGirl.create(:user)
+      post :unsubscribe, :id => user.id
+      response.should redirect_to user_path(user)
+      user.reload
+      expect(user.stripe_customer_id).to be_nil
+    end
+  end  
+
 
 end

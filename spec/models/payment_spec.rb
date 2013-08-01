@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Payment do  
 
   before do 
-    @user = FactoryGirl.create(:user)
+    @charity = FactoryGirl.create(:charity)
+    @user = FactoryGirl.create(:user, charity_id: @charity.id)
     activity1 = FactoryGirl.create(:activity, user_id: @user.id)
     activity2 = FactoryGirl.create(:activity, user_id: @user.id, 
                                               created_at: DateTime.now - 4.days) 
@@ -21,10 +22,11 @@ describe Payment do
       expect(Payment.calculate_amount(activities)).to eq(50)
     end
 
-    it "should add the bill amount to users billing history" do
+    it "should add the bill amount and charity to users billing history" do
       stub_stripe
       Payment.make_payment(100, @user)
       expect(@user.payments.first.bill_amount).to eq(100)
+      expect(@user.payments.first.charity).to eq("MyString")
     end
   end
 

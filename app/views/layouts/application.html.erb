@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Antisocialnetwork</title>
+    <title>Givr - The Social Way to Help</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "application", media: "all"%>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "https://js.stripe.com/v1/" %>
     <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -14,5 +15,9 @@
 
   	<%= yield %>
     
+    <div class="container copy-padding">
+        <p class="muted credit">Contact Us: <a href="mailto:info@givr.org.uk?Subject=Hello%20Givr" target="_top">info@givr.org.uk</a></p>
+    </div>
+
   </body>
 </html>

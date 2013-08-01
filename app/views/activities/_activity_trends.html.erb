@@ -1,4 +1,8 @@
 <div class="well">
-  <legend>Last 30 days</legend>
+  <p>
+    <span>Last 7 days</span>
+    </br>
+    <span>(<%= 7.days.ago.beginning_of_day.strftime("%a %d-%b-%Y") %> - <%= 1.day.ago.beginning_of_day.strftime("%a %d-%b-%Y") %>)</span>
+  </p>
   <div id="chart_area"></div>
 </div>

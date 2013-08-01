@@ -4,6 +4,7 @@ Antisocialnetwork::Application.routes.draw do
   get "sessions/new", :as => :signin
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
+  post "/unsubscribe/:id" => "users#unsubscribe", :as => :unsubscribe
   resources :users, :only => [:index, :show, :edit, :update, :destroy]
   resources :activities, :only => [:index, :show, :create]
  
