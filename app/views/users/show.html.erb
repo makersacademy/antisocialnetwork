@@ -4,28 +4,28 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Facebook Activity Trend</h3>
+      <h3 class="panel-title">Recent Facebook Activity</h3>
     </div>
     <%= render "activities/activity_trends" %>
   </div>
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Facebook Activity Breakdown</h3>
+      <h3 class="panel-title">Facebook Activity Totals</h3>
     </div>
     <%= render "activities/activity_breakdowns" %>
   </div>
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Donations Summary</h3>
+      <h3 class="panel-title">Donation Summary</h3>
     </div>
     <div class="well">
       <% if @user.stripe_customer_id %>
-        <legend>Running total of activities since join or last donation <%= number_to_currency(recent_activity_cost(@user), :unit => "£") %></legend>
-        <legend>Total donations to date <%= number_to_currency(total_donations(@user), :unit => "£") %></legend>
+        <p>Accumulated for this period: <span class="label pull-right"><%= number_to_currency(recent_activity_cost(@user), :unit => "£") %><span></p>
+        <p>Total to date <span class="label pull-right"><%= number_to_currency(total_donations(@user), :unit => "£") %><span></p>
       <% else %>
-        <legend>Total donations to date £0.00</legend>
+        <legend>You have not started making donations yet</legend>
         <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right" %>
       <% end %>  
     </div>

@@ -25,10 +25,17 @@ class User < ActiveRecord::Base
     nil
   end
 
-
-  def activity_in_this_payment_cycle
-    Time.now - ((Date.parse('2013-07-30').wday - 5) % 7)
-    self.activities.group(:activity_description).where(:created_at => ((Date.parse('2013-07-31').wday - 5) % 7).days.ago..Time.now).count
+  def chargeable_activity_in_payment_period(period=nil)
+    c_period = period || (((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day..DateTime.now)
+    c_period = self.created_at..DateTime.now if c_period.cover? self.created_at
+    activity_in_payment_period(c_period)
   end
+
+  def activity_in_payment_period(period=nil)
+    c_period = period || (((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day..DateTime.now)
+    list = self.activities.group(:activity_description).where(:activity_updated_time => c_period).count
+    Hash[list.sort_by { |k,v| -v }]
+  end
+
 
 end

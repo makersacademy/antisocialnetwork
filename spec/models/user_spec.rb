@@ -95,5 +95,50 @@ describe User do
     end
   end
 
+  describe "activity in payment cycle" do
+    
+    before(:each) do
+      activity1 = FactoryGirl.create(
+        :activity, :user_id => user.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-24 12:13:14")
+      activity2 = FactoryGirl.create(
+        :activity, :user_id => user.id,
+        :activity_description => "add album",
+        :activity_updated_time => "2013-07-25 12:13:14")
+      activity3 = FactoryGirl.create(
+        :activity, :user_id => user.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-26 12:13:14")
+      activity4 = FactoryGirl.create(
+        :activity, :user_id => user.id,
+        :activity_description => "add link",
+        :activity_updated_time => "2013-07-20 12:13:14")
+      activity5 = FactoryGirl.create(
+        :activity, :user_id => user.id,
+        :activity_description => "add photo",
+        :activity_updated_time => "2013-07-24 12:13:14")
+    end
+    
+    describe "METHOD 'activity_in_payment_period'" do
+      it "should return a hash of activities with counts of the number within the given period" do
+        activities_array = {"add link"=>1, "add album" =>1, "add photo"=>1}
+        date_range = DateTime.parse("2013-07-24")..DateTime.parse("2013-07-26")
+        user.activity_in_payment_period(date_range).should == activities_array
+      end
+    end
+
+    describe "METHOD 'chargeable_activity_in_payment_period'" do
+      context "when the user joined during the payment period" do
+        it "should return a hash of activities with counts of the number within the given period" do
+          activities_array = {"add link" =>1}
+          date_range = DateTime.parse("2013-07-24")..DateTime.parse("2013-07-26")
+          User.any_instance.stub(:created_at).and_return(DateTime.parse("2013-07-25 13:00"))
+          user.chargeable_activity_in_payment_period(date_range).should == activities_array
+        end
+      end
+    end
+
+  end
 end
 

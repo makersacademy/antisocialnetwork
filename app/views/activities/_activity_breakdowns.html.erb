@@ -1,9 +1,13 @@
 <div class="well">
-  <legend>
-    <span>This donation period </legend>
+  <p>
+    <span>This donation period </span>
+  </br>
+    </span>(<%= ((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day.strftime("%a %d-%b-%Y %H:%M") %> until now)</span>
+  </p>
+  
   <ul class="nav">
     
-    <% current_user.activity_in_this_payment_cycle.each do |activity, count| %>
+    <% current_user.chargeable_activity_in_payment_period.each do |activity, count| %>
     
     <li class="active">
       <span>
