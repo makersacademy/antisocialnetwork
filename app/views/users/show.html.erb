@@ -29,8 +29,9 @@
         <p>Accumulated for this period: <span class="label pull-right"><%= number_to_currency(recent_activity_cost(@user), :unit => "£") %><span></p>
         <p>Total to date <span class="label pull-right"><%= number_to_currency(total_donations(@user), :unit => "£") %><span></p>
       <% else %>
-        <legend>You have not started making donations yet</legend>
-        <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right" %>
+        <legend>You have not started making donations yet <%= link_to "Donate Now", "#payment_form", class: "btn btn-danger navbar-btn pull-right donate-now" %>
+        </legend>
+        <p>Donations are currently fixed at £0.50 per Facebook activity.</p>
       <% end %>  
     </div>
   </div>
