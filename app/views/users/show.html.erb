@@ -1,11 +1,14 @@
 <%= render "users/navbar" %>
 
 <div id="main_content" class="container copy-padding">
-  <div class="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg %>
-    <% end %>
-  </div>
+
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= msg %>
+    </div> 
+  <% end %>
+
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Recent Facebook Activity</h3>

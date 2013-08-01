@@ -9,7 +9,7 @@
           <h5><%= charity.name %></h5>
           <p>Registration number: <%= charity.registered_number %></p>
           <p class="charity-dash"><%= charity.activities %></p>
-          <p><%= link_to charity.name, charity.url %></p>
+          <h5><%= link_to charity.name, charity.url %></h5>
           <%= form_tag(user_path(@user), :method => :put) do %>
           <%= hidden_field_tag :charity_id, charity.id %>
           <% if @user.charity_id && @user.charity.name == charity.name %>

@@ -166,7 +166,7 @@ img {
   margin-right: 30px;
 }
 
-/*########### Chart Section start*/
+/* Chart Section start */
 
 #chart_area {
   font: 1em sans-serif;
@@ -213,6 +213,16 @@ img {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22698f', endColorstr='#00a7ff',GradientType=0 ); /* IE6-9 */
   padding-top: 20px;
   padding-bottom: 30px;
+}
+
+.alert {
+  padding: 8px 0px 8px 15px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+.alert .close {
+  right: 15px;
 }
 
 .navbar-text {
