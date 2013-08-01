@@ -1,26 +1,35 @@
 @media(min-width: 1200px) {
   .charity-home {
-  height: 170px;
+  height: 140px;
   }
 
   .charity-dash {
     height: 160px;
   }
+
+  #main_content { 
+    margin-top: 120px; 
+  }
 }
 
 @media(max-width: 1199px) and (min-width: 980px){
   .charity-home {
-  height: 200px;
+  height: 180px;
   }
   
   .charity-dash {
   height: 200px;
   }
+
+  #main_content { 
+    margin-top: 120px; 
+  }
+
 }
 
 @media(max-width: 979px) and (min-width: 768px){
   .charity-home {
-  height: 260px;
+  height: 230px;
   }
   
   .charity-dash {
@@ -29,6 +38,10 @@
 
   .charity-button{
     margin-bottom: 20px;
+  }
+
+  #main_content {
+    margin-top: -20px;
   }
 }
 
@@ -59,7 +72,7 @@
 
 body {
   background-image: url('/assets/cream_pixels.png');
-  font-family: futura;
+  font-family: Futura, "Trebuchet MS", Helvetica, sans-serif;
   letter-spacing:1px;
   padding-top: 0px;
   margin-top: 0px;
@@ -98,7 +111,6 @@ h1 {
 h2 {
   margin-top: 30px;
   margin-bottom: 30px;
-  /*color: #148DD9;*/
   color: #8b95a0;
 }
 
@@ -107,15 +119,11 @@ p {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #8b95a0;
-  font-size: 16px;
+  margin: 0px;
 }
 
 h5 {
   height: 40px;
-}
-
-#main_content { 
-  padding-top: 70px; 
 }
 
 .row {
@@ -150,7 +158,15 @@ img {
   border: 1px solid #0367A6;
 }
 
-/*########### Chart Section start*/
+.pull-left {
+  margin-left: 30px;
+}
+
+.navbar .nav.pull-right {
+  margin-right: 30px;
+}
+
+/* Chart Section start */
 
 #chart_area {
   font: 1em sans-serif;
@@ -199,6 +215,16 @@ img {
   padding-bottom: 30px;
 }
 
+.alert {
+  padding: 8px 0px 8px 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.alert .close {
+  right: 15px;
+}
+
 .navbar-text {
   padding-right: 10px;
   color: #ffffff !important;
@@ -212,4 +238,8 @@ img {
 .don-hist {
   margin-top:20px;
   margin-bottom:10px;
+}
+
+.don-legend {
+  padding-bottom: 0px;
 }
