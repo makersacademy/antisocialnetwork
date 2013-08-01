@@ -4,7 +4,15 @@ class Payment < ActiveRecord::Base
   def self.calculate_activity(user)
     date = DateTime.now.beginning_of_day
     user.activities.where(:activity_updated_time => date - 7.days..date).count
-  end  
+  end
+
+  def self.users_current_payment_period(user)
+    if user.payments.length > 0
+      user.payments.last.created_at..Time.now
+    else
+      user.created_at..Time.now
+    end
+  end
 
   def self.calculate_amount(user_activity, amount=50)
     user_activity * amount
@@ -35,5 +43,6 @@ class Payment < ActiveRecord::Base
         end  
       end  
     end 
-  end   
+  end
+
 end

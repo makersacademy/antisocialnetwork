@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def recent_activity_cost(user, amount=50)
-    period = users_current_payment_period(user)
+    period = Payment.users_current_payment_period(user)
     activity = user.activities.where(:activity_updated_time => period).count
     activity * amount / 100.00
   end  
@@ -15,14 +15,6 @@ module ApplicationHelper
       0
     end
   end
-
-  def users_current_payment_period(user)
-    if user.payments.length > 0
-      user.payments.last.created_at..Time.now
-    else
-      user.created_at..Time.now
-    end
-  end
-  
+ 
 end
 
