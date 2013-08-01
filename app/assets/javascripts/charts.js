@@ -27,7 +27,7 @@ function displayChart(error, data) {
   var y = d3.scale.linear()
     .rangeRound([height, 0]);
 
-  var colors_array = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]
+  var colors_array = ["#33B0FF", "#d0743c", "#44E849", "#CC1F9A", "#B30A00", "#ff8c00", "#B26AE8"]
 
   var color = d3.scale.ordinal().range(colors_array);
 
