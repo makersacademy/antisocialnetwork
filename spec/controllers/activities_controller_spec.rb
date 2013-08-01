@@ -42,27 +42,46 @@ describe ActivitiesController do
       get 'index', :format => :json
     end
   end
-
-  context "user signing in for the first time" do
+  describe "POST 'create'" do
 
     let(:current_user1){User.create}
 
-    before(:each) do
-      session[:user_id] = current_user1.id
-    end
+    context "user signing in for the first time" do
 
-    describe "POST 'create'" do  
+      before(:each) do
+        session[:user_id] = current_user1.id
+        User.any_instance.stub(:created_at).and_return(Time.now)
+      end
+      
       it "should retrieve the users historic facebook data" do
-        Activity.should_receive(:save_latest_activities_for_user).with(current_user1, 30.day).and_return(nil)
+        Activity.should_receive(:save_latest_activities_for_user).with(current_user1, 7.day).and_return(nil)
         post 'create'
       end
 
       it "should redirect to the user profile page" do
-        Activity.stub(:save_latest_activities_for_user).with(current_user1, 30.day).and_return(nil)
+        Activity.stub(:save_latest_activities_for_user).with(current_user1, 7.day).and_return(nil)
         post 'create'
         response.should redirect_to user_path(current_user1)
       end
     end
-  end
 
+    context "user signing in the next time" do
+
+      before(:each) do
+        session[:user_id] = current_user1.id
+        User.any_instance.stub(:created_at).and_return(2.days.ago)
+      end
+
+      it "should NOT retrieve the users historic facebook data" do
+        Activity.should_not_receive(:save_latest_activities_for_user)
+        post 'create'
+      end
+
+      it "should redirect to the user profile page" do
+        post 'create'
+        response.should redirect_to user_path(current_user1)
+      end
+    end
+
+  end
 end
