@@ -6,6 +6,10 @@
   .charity-dash {
     height: 160px;
   }
+
+  #main_content { 
+    margin-top: 120px; 
+  }
 }
 
 @media(max-width: 1199px) and (min-width: 980px){
@@ -16,6 +20,11 @@
   .charity-dash {
   height: 200px;
   }
+
+  #main_content { 
+    margin-top: 120px; 
+  }
+
 }
 
 @media(max-width: 979px) and (min-width: 768px){
@@ -29,6 +38,10 @@
 
   .charity-button{
     margin-bottom: 20px;
+  }
+
+  #main_content {
+    margin-top: -20px;
   }
 }
 
@@ -98,7 +111,6 @@ h1 {
 h2 {
   margin-top: 30px;
   margin-bottom: 30px;
-  /*color: #148DD9;*/
   color: #8b95a0;
 }
 
@@ -112,10 +124,6 @@ p {
 
 h5 {
   height: 40px;
-}
-
-#main_content { 
-  padding-top: 70px; 
 }
 
 .row {
@@ -148,6 +156,14 @@ img {
 
 .thumbnail {
   border: 1px solid #0367A6;
+}
+
+.pull-left {
+  margin-left: 30px;
+}
+
+.navbar .nav.pull-right {
+  margin-right: 30px;
 }
 
 /*########### Chart Section start*/
