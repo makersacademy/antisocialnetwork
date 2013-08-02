@@ -10,7 +10,7 @@ module ApplicationHelper
     period = Payment.users_current_payment_period(user)
     activity = user.activities.where(:activity_updated_time => period).count
     activity * amount / 100.00
-  end  
+  end
 
   def total_donations(user)
     if user.payments.length > 0

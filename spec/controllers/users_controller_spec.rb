@@ -58,16 +58,5 @@ describe UsersController do
     end
   end
 
-  describe "DELETE 'destroy'" do
-    it "redirects to index" do
-      delete 'destroy', :id => 1
-      response.should redirect_to :root
-    end
-
-    it "deletes the user from the database" do
-      pending "not clear at this point whether users should be deleted or just deactivated"
-      delete 'destroy', :id => 1
-    end
-  end
 
 end
