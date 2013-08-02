@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
-//= require_tree .
+//= require bootstrap.min
+//= require d3.v3.min
+//= require payments
