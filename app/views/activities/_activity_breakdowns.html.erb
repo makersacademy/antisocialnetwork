@@ -2,7 +2,7 @@
   <p>
     <span>This donation period </span>
   </br>
-    </span>(<%= ((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day.strftime("%a %d-%b-%Y %H:%M") %> until now)</span>
+    </span>(<%= current_period_date_range(@user) %>)</span>
   </p>
   
   <ul class="nav">

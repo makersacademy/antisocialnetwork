@@ -8,6 +8,16 @@ describe ApplicationHelper do
   let(:app_helper){ApplicationHelperInstance.new}
   let(:the_user){FactoryGirl.create(:user)}
 
+  describe "METHOD 'current_period_date_range'" do
+    it "should delegate to the Payment model and return a formatted date range string" do
+      test_date_range = 1.day.ago..Time.now
+      Payment.should_receive(:users_current_payment_period).twice.with(the_user).and_return(test_date_range)
+      expected_result = "#{test_date_range.first.strftime("%a %d-%b-%Y %H:%M")} - #{test_date_range.last.strftime("%a %d-%b-%Y %H:%M")}"
+      expect(app_helper.current_period_date_range(the_user)).to eql expected_result
+    end
+
+  end
+
   describe "METHOD recent_activity_cost" do
 
     before(:each) do
