@@ -26,13 +26,13 @@ class User < ActiveRecord::Base
   end
 
   def chargeable_activity_in_payment_period(period=nil)
-    c_period = period || (((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day..DateTime.now)
+    c_period = period || Payment.users_current_payment_period(self)
     c_period = self.created_at..DateTime.now if c_period.cover? self.created_at
     activity_in_payment_period(c_period)
   end
 
   def activity_in_payment_period(period=nil)
-    c_period = period || (((DateTime.now.wday - 5) % 7).days.ago.beginning_of_day..DateTime.now)
+    c_period = period || Payment.users_current_payment_period(self)
     list = self.activities.group(:activity_description).where(:activity_updated_time => c_period).count
     Hash[list.sort_by { |k,v| -v }]
   end
