@@ -5,7 +5,7 @@ This repository contains the code for a web application built using Ruby version
 
 The application uses a PostgreSQL databases. Run `rake db:create:all` to create the databases followed by `rake db:migrate`.
 
-The application needs to be registered as a web application with Facebook. For secuirty reasons Facebook will only redirect (after login via facebook) to a url specified on Facebook in the app summary page. When testing and during development this is set to http://localhost:3000/, but when used in production must be set to the production url.
+The application needs to be registered as a web application with Facebook. For security reasons Facebook will only redirect (after login via facebook) to a url specified on Facebook in the app summary page. When testing and during development this is set to http://localhost:3000/, but when used in production must be set to the production url.
 
 The application assumes facebook developer credentials are stored in the following environment variables.
   * `ASN_FACEBOOK_ID` - containing the facebook "app code"
